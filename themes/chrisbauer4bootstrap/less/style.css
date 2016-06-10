@@ -7296,3 +7296,6 @@ p:last-child,
 .control-group .help-inline:first-child {
   margin-top: 0;
 }
+.logo img {
+  width: 50px;
+}
