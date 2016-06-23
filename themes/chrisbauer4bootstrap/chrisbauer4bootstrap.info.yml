@@ -22,3 +22,5 @@ regions:
 libraries:
   - 'chrisbauer4bootstrap/global-styling'
   - 'chrisbauer4bootstrap/bootstrap-scripts'
+  - 'chrisbauer4bootstrap/slick-slider'
+  - 'chrisbauer4bootstrap/custom-javascript'

@@ -17,3 +17,20 @@ bootstrap-scripts:
     bootstrap/js/scrollspy.js: {}
     bootstrap/js/tab.js: {}
     bootstrap/js/transition.js: {}
+
+slick-slider:
+  version: 1.6.0
+  css:
+    theme:
+      slick/slick-theme.css {}
+  js:
+    slick/slick.min.js: {}
+  dependencies:
+    - core/jquery
+
+custom-javascript:
+    version: 1.0.0
+    js:
+      js/scripts.js: {}
+    dependencies:
+    - core/jquery
