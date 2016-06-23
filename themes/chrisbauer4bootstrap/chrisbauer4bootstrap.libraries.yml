@@ -34,3 +34,4 @@ custom-javascript:
       js/scripts.js: {}
     dependencies:
     - core/jquery
+    - core/jquery.once
