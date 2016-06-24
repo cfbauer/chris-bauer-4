@@ -1,0 +1,16 @@
+<?php
+/**
+ * @file
+ * CBClassy sub-theme.
+ *
+ * Place your custom PHP code in this file.
+ */
+
+function cbclassy_preprocess_field(&$variables, $hook) {
+
+  $element = $variables['element'];
+
+  if ($element['#field_name'] == 'field_link') {
+    $variables['items'][0]['content']['#options']['attributes']['class'][] = 'btn btn-default';
+  }
+}

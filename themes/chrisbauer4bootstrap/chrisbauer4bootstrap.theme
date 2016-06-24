@@ -11,7 +11,6 @@ function chrisbauer4bootstrap_preprocess_field(&$variables, $hook) {
   $element = $variables['element'];
 
   if ($element['#field_name'] == 'field_link') {
-    // kint($variables);
     $variables['items'][0]['content']['#options']['attributes']['class'][] = 'btn btn-default';
   }
 }
