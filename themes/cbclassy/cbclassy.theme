@@ -11,6 +11,6 @@ function cbclassy_preprocess_field(&$variables, $hook) {
   $element = $variables['element'];
 
   if ($element['#field_name'] == 'field_link') {
-    $variables['items'][0]['content']['#options']['attributes']['class'][] = 'btn btn-default';
+    $variables['items'][0]['content']['#options']['attributes']['class'][] = 'btn btn-default red';
   }
 }

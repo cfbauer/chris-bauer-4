@@ -18,3 +18,5 @@ regions:
 libraries:
   - 'cbclassy/global-styling'
   - 'cbclassy/custom-javascript'
+  - 'cbclassy/google-fonts'
+  - 'cbclassy/font-awesome'
