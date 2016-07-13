@@ -6,7 +6,6 @@ name: 'Chris Bauer 4 Classy Based Theme'
 description: 'Lets See About This Drupal 8 Bidness'
 
 regions:
-  navigation: 'Navigation'
   header: 'Header'
   highlighted: 'Highlighted'
   help: 'Help'

@@ -7,6 +7,7 @@ custom-javascript:
     version: 1.0.0
     js:
       js/scripts.js: {}
+      js/materialize/bin/materialize.js: {}
     dependencies:
     - core/jquery
     - core/jquery.once

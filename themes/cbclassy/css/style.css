@@ -3347,7 +3347,7 @@ ul li {
 }
 
 /* line 71, ../sass/materialize/components/_global.scss */
-.z-depth-2 {
+.z-depth-2, .field--name-field-hero-image img {
   box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -3830,7 +3830,7 @@ td, th {
   position: relative;
 }
 /* line 509, ../sass/materialize/components/_global.scss */
-.collection .collection-item.avatar .circle {
+.collection .collection-item.avatar .circle, .collection .collection-item.avatar .field--name-field-hero-image img, .field--name-field-hero-image .collection .collection-item.avatar img {
   position: absolute;
   width: 42px;
   height: 42px;
@@ -4054,7 +4054,7 @@ nav ul a span.badge {
 }
 
 /* line 732, ../sass/materialize/components/_global.scss */
-.center, .center-align {
+.center, .center-align, h1, h2, h3, h4, .site-name a {
   text-align: center;
 }
 
@@ -4080,7 +4080,7 @@ input[type=range] + .thumb {
 }
 
 /* line 753, ../sass/materialize/components/_global.scss */
-.circle {
+.circle, .field--name-field-hero-image img {
   border-radius: 50%;
 }
 
@@ -4137,20 +4137,20 @@ input[type=range] + .thumb {
 }
 
 /* line 21, ../sass/materialize/components/_grid.scss */
-.section, header, main {
+.section, header, main, .field--name-field-hero-image {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
 /* line 25, ../sass/materialize/components/_grid.scss */
-.section.no-pad, header.no-pad, main.no-pad {
+.section.no-pad, header.no-pad, main.no-pad, .no-pad.field--name-field-hero-image {
   padding: 0;
 }
 /* line 28, ../sass/materialize/components/_grid.scss */
-.section.no-pad-bot, header.no-pad-bot, main.no-pad-bot {
+.section.no-pad-bot, header.no-pad-bot, main.no-pad-bot, .no-pad-bot.field--name-field-hero-image {
   padding-bottom: 0;
 }
 /* line 31, ../sass/materialize/components/_grid.scss */
-.section.no-pad-top, header.no-pad-top, main.no-pad-top {
+.section.no-pad-top, header.no-pad-top, main.no-pad-top, .no-pad-top.field--name-field-hero-image {
   padding-top: 0;
 }
 
@@ -7863,7 +7863,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 /* line 239, ../sass/materialize/components/_preloader.scss */
-.gap-patch .circle {
+.gap-patch .circle, .gap-patch .field--name-field-hero-image img, .field--name-field-hero-image .gap-patch img {
   width: 1000%;
   left: -450%;
 }
@@ -7878,7 +7878,7 @@ input[type=range]:focus::-ms-fill-upper {
   border-color: inherit;
 }
 /* line 252, ../sass/materialize/components/_preloader.scss */
-.circle-clipper .circle {
+.circle-clipper .circle, .circle-clipper .field--name-field-hero-image img, .field--name-field-hero-image .circle-clipper img {
   width: 200%;
   height: 100%;
   border-width: 3px;
@@ -7895,14 +7895,14 @@ input[type=range]:focus::-ms-fill-upper {
   bottom: 0;
 }
 /* line 268, ../sass/materialize/components/_preloader.scss */
-.circle-clipper.left .circle {
+.circle-clipper.left .circle, .circle-clipper.left .field--name-field-hero-image img, .field--name-field-hero-image .circle-clipper.left img {
   left: 0;
   border-right-color: transparent !important;
   -webkit-transform: rotate(129deg);
   transform: rotate(129deg);
 }
 /* line 274, ../sass/materialize/components/_preloader.scss */
-.circle-clipper.right .circle {
+.circle-clipper.right .circle, .circle-clipper.right .field--name-field-hero-image img, .field--name-field-hero-image .circle-clipper.right img {
   left: -100%;
   border-left-color: transparent !important;
   -webkit-transform: rotate(-129deg);
@@ -7910,14 +7910,14 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 /* line 284, ../sass/materialize/components/_preloader.scss */
-.active .circle-clipper.left .circle {
+.active .circle-clipper.left .circle, .active .circle-clipper.left .field--name-field-hero-image img, .field--name-field-hero-image .active .circle-clipper.left img {
   /* duration: ARCTIME */
   -webkit-animation: left-spin 1333ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
   animation: left-spin 1333ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
 }
 
 /* line 290, ../sass/materialize/components/_preloader.scss */
-.active .circle-clipper.right .circle {
+.active .circle-clipper.right .circle, .active .circle-clipper.right .field--name-field-hero-image img, .field--name-field-hero-image .active .circle-clipper.right img {
   /* duration: ARCTIME */
   -webkit-animation: right-spin 1333ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
   animation: right-spin 1333ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
@@ -8944,39 +8944,39 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
     margin-bottom: 5em;
   }
 }
-/* line 10, ../sass/style.scss */
+/* line 11, ../sass/style.scss */
 htmnl {
   font-size: 16px;
 }
 
-/* line 14, ../sass/style.scss */
+/* line 15, ../sass/style.scss */
 body {
-  font: 1rem "Roboto", sans-serif;
+  font: 1.25rem/28px "Roboto Condensed", sans-serif;
   color: #212121;
 }
 
-/* line 19, ../sass/style.scss */
+/* line 20, ../sass/style.scss */
 h1, h2, h3, h4, .site-name a {
   font: 700 2.44rem "Roboto Condensed", sans-serif;
   margin-bottom: 1rem;
 }
 
-/* line 23, ../sass/style.scss */
+/* line 26, ../sass/style.scss */
 h2 {
   font-size: 2.44rem;
 }
 
-/* line 26, ../sass/style.scss */
+/* line 29, ../sass/style.scss */
 h3 {
   font-size: 1.95rem;
 }
 
-/* line 29, ../sass/style.scss */
+/* line 32, ../sass/style.scss */
 h4, .site-name a {
   font-size: 1.56rem;
 }
 
-/* line 33, ../sass/style.scss */
+/* line 36, ../sass/style.scss */
 p {
   margin-bottom: 1rem;
 }
@@ -8984,21 +8984,21 @@ p {
 /*
 * Sitewide elements
 */
-/* line 50, ../sass/style.scss */
+/* line 53, ../sass/style.scss */
 header {
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 }
 
 /*
 * Home Page
 */
-/* line 68, ../sass/style.scss */
+/* line 71, ../sass/style.scss */
 .site-logo {
   float: left;
   margin-right: 20px;
 }
 
-/* line 72, ../sass/style.scss */
+/* line 75, ../sass/style.scss */
 .site-name a {
   color: #727272;
   line-height: 50px;
@@ -9007,27 +9007,84 @@ header {
 /*
 * Layout
 */
+/* line 97, ../sass/style.scss */
+main, .wrapper {
+  *zoom: 1;
+}
+/* line 38, ../../../../../../../../home/chris/.rvm/gems/ruby-2.3.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/general/_clearfix.scss */
+main:after, .wrapper:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 @media (min-width: 768px) {
-  /* line 94, ../sass/style.scss */
+  /* line 97, ../sass/style.scss */
   main, .wrapper {
     max-width: 768px;
     margin: 0 auto;
   }
 }
 @media (min-width: 1200px) {
-  /* line 94, ../sass/style.scss */
+  /* line 97, ../sass/style.scss */
   main, .wrapper {
     max-width: 1200px;
   }
 }
 
 @media (min-width: 768px) {
-  /* line 104, ../sass/style.scss */
+  /* line 108, ../sass/style.scss */
   .region-content {
-    width: 74.46809%;
+    width: 65.95745%;
+    float: left;
+    margin-right: -100%;
+    margin-left: 17.02128%;
+    clear: none;
+  }
+}
+
+@media (min-width: 768px) {
+  /* line 114, ../sass/style.scss */
+  .block-system-branding-block {
+    width: 31.91489%;
+    float: left;
+    margin-right: -100%;
+    margin-left: 0;
+    clear: none;
+  }
+}
+
+@media (min-width: 768px) {
+  /* line 120, ../sass/style.scss */
+  .block-menu.navigation {
+    width: 65.95745%;
     float: right;
     margin-left: 0;
     margin-right: 0;
     clear: none;
   }
 }
+
+/*
+* Component Styles
+*/
+/* line 132, ../sass/style.scss */
+.block-menu.navigation ul.menu {
+  float: right;
+  font-size: 1.25rem;
+}
+/* line 136, ../sass/style.scss */
+.block-menu.navigation li.menu-item {
+  float: left;
+  margin-right: 20px;
+  line-height: 48px;
+}
+
+/* line 145, ../sass/style.scss */
+.field--name-field-hero-image img {
+  margin: 0 auto;
+  display: block;
+}
+
+/*
+* Forms
+*/
