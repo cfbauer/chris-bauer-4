@@ -1,0 +1,13 @@
+uuid: 088448c0-692c-4996-a600-eaaea9f10ccc
+langcode: en
+status: true
+dependencies: {  }
+id: daily_schedule
+label: 'Daily Schedule'
+enabled: null
+keep: null
+period: null
+cron: null
+source_id: null
+destination_id: null
+settings_profile_id: null

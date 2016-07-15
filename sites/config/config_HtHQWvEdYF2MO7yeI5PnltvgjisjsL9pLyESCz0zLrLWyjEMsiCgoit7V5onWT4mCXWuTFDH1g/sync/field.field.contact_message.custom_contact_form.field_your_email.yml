@@ -1,0 +1,19 @@
+uuid: f19efe83-3713-4477-adff-3bc30a7b402b
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.custom_contact_form
+    - field.storage.contact_message.field_your_email
+id: contact_message.custom_contact_form.field_your_email
+field_name: field_your_email
+entity_type: contact_message
+bundle: custom_contact_form
+label: 'Your Email'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

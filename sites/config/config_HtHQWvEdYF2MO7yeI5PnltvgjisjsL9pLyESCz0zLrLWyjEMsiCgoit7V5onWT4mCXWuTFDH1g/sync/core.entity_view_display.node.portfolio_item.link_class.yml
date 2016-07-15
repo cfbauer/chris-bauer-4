@@ -1,0 +1,58 @@
+uuid: 68a37423-5850-46eb-93a6-7b8667b3f3d8
+langcode: en
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.node.link_class
+    - field.field.node.portfolio_item.body
+    - field.field.node.portfolio_item.field_link
+    - field.field.node.portfolio_item.field_portfolio_image
+    - image.style.medium
+    - node.type.portfolio_item
+  module:
+    - image
+    - link
+    - text
+    - user
+id: node.portfolio_item.link_class
+targetEntityType: node
+bundle: portfolio_item
+mode: link_class
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+  field_link:
+    weight: 104
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+    type: link
+  field_portfolio_image:
+    weight: 103
+    label: above
+    settings:
+      image_style: medium
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+  title:
+    label: hidden
+    type: string
+    weight: -5
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden: {  }

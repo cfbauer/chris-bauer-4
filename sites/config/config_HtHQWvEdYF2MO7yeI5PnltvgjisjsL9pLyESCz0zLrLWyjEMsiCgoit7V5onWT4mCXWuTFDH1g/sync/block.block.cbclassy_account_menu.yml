@@ -1,0 +1,24 @@
+uuid: afa27204-0680-49be-9d33-92f53a53b7d9
+langcode: en
+status: false
+dependencies:
+  config:
+    - system.menu.account
+  module:
+    - system
+  theme:
+    - cbclassy
+id: cbclassy_account_menu
+theme: cbclassy
+region: '-1'
+weight: -2
+provider: null
+plugin: 'system_menu_block:account'
+settings:
+  id: 'system_menu_block:account'
+  label: 'User account menu'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 1
+visibility: {  }

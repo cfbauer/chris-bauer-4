@@ -1,0 +1,20 @@
+uuid: 845a5b80-fbc6-4713-9100-b8486bb448c6
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - chrisbauer4bootstrap
+id: chrisbauer4bootstrap_messages
+theme: chrisbauer4bootstrap
+region: highlighted
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

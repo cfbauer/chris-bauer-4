@@ -1,0 +1,50 @@
+uuid: 68856eeb-5ab3-4d42-ba45-69c6b03ff95f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.page.body
+    - field.field.node.page.field_hero_image
+    - image.style.hero_image
+    - node.type.page
+  module:
+    - field_formatter_class
+    - image
+    - text
+    - title
+    - user
+id: node.page.default
+targetEntityType: node
+bundle: page
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+  field_hero_image:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: hero_image
+      image_link: ''
+    third_party_settings:
+      field_formatter_class:
+        class: ''
+    type: image
+  links:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+  title:
+    type: linked_and_wrapped
+    settings:
+      tag: h1
+      linked: false
+      classes: ''
+    weight: 1
+    label: inline
+    third_party_settings: {  }
+hidden: {  }

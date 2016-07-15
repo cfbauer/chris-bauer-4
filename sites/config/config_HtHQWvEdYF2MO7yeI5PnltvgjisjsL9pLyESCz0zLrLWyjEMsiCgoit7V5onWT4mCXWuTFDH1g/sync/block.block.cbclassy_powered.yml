@@ -1,0 +1,20 @@
+uuid: a588479c-996a-4b4f-863e-b61bb73f13a2
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - cbclassy
+id: cbclassy_powered
+theme: cbclassy
+region: '-1'
+weight: -4
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  provider: system
+  label_display: '0'
+visibility: {  }

@@ -1,0 +1,12 @@
+uuid: e00c5ace-8036-4031-b200-dc2e9ba59775
+name: ChrisBauer.org
+mail: cfbauer@gmail.com
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /node/1
+admin_compact_mode: false
+weight_select_max: 100
+langcode: en
+default_langcode: en

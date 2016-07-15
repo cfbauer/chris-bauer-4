@@ -1,0 +1,24 @@
+uuid: 02147d22-7d83-4e02-950f-d901d6ef6c3f
+langcode: en
+status: false
+dependencies:
+  config:
+    - system.menu.footer
+  module:
+    - system
+  theme:
+    - cbclassy
+id: cbclassy_footer
+theme: cbclassy
+region: '-1'
+weight: -5
+provider: null
+plugin: 'system_menu_block:footer'
+settings:
+  id: 'system_menu_block:footer'
+  label: 'Footer menu'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 0
+visibility: {  }

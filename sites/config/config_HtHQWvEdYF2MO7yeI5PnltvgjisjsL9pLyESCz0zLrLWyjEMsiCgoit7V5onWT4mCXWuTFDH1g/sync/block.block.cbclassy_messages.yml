@@ -1,0 +1,20 @@
+uuid: 645fa376-eb93-468d-9556-8853acc90b9d
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - cbclassy
+id: cbclassy_messages
+theme: cbclassy
+region: highlighted
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

@@ -1,0 +1,10 @@
+uuid: 6e9ff361-98c2-4170-ba3e-e13df4f3e52b
+langcode: en
+status: true
+dependencies: {  }
+id: custom_contact_form
+label: 'Custom Contact Form'
+recipients:
+  - cfbauer@gmail.com
+reply: ''
+weight: 0

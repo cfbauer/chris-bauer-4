@@ -1,0 +1,20 @@
+uuid: 9f19f2ba-758c-4245-a4f8-58dfe6df056e
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - cbclassy
+id: cbclassy_content
+theme: cbclassy
+region: content
+weight: -2
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }

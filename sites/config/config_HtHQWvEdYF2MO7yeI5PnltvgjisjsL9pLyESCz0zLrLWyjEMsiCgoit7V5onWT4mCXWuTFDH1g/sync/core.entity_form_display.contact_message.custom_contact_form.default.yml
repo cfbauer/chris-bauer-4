@@ -1,0 +1,41 @@
+uuid: 43b77bcc-9898-42d2-8914-10210a53b696
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.custom_contact_form
+    - field.field.contact_message.custom_contact_form.field_message
+    - field.field.contact_message.custom_contact_form.field_your_email
+    - field.field.contact_message.custom_contact_form.field_your_name
+id: contact_message.custom_contact_form.default
+targetEntityType: contact_message
+bundle: custom_contact_form
+mode: default
+content:
+  field_message:
+    weight: 2
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+  field_your_email:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: email_default
+  field_your_name:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+hidden:
+  copy: true
+  mail: true
+  message: true
+  name: true
+  subject: true

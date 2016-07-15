@@ -1,0 +1,20 @@
+uuid: f860f6ab-66a3-4c13-a0f1-e5106f577017
+langcode: en
+status: false
+dependencies:
+  module:
+    - search
+  theme:
+    - cbclassy
+id: cbclassy_search
+theme: cbclassy
+region: '-1'
+weight: -3
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: Search
+  provider: search
+  label_display: visible
+visibility: {  }

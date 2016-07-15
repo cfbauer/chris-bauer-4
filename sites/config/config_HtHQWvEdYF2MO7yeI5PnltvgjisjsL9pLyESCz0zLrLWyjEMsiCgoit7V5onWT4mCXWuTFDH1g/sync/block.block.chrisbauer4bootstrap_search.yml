@@ -1,0 +1,20 @@
+uuid: 7d05b944-09e6-49eb-8215-21eed97d10e7
+langcode: en
+status: false
+dependencies:
+  module:
+    - search
+  theme:
+    - chrisbauer4bootstrap
+id: chrisbauer4bootstrap_search
+theme: chrisbauer4bootstrap
+region: '-1'
+weight: -6
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: Search
+  provider: search
+  label_display: visible
+visibility: {  }

@@ -1,0 +1,9 @@
+uuid: 3646e93e-575d-4860-b655-85462fade349
+langcode: en
+status: true
+dependencies: {  }
+id: default_db
+label: 'Default Drupal Database'
+type: DefaultDB
+config:
+  name: 'Default Drupal Database'

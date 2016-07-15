@@ -1,0 +1,20 @@
+uuid: 80029932-5c22-4194-b207-7e884a89a5c3
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - stark
+id: stark_help
+theme: stark
+region: content
+weight: -7
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  provider: help
+  label_display: '0'
+visibility: {  }

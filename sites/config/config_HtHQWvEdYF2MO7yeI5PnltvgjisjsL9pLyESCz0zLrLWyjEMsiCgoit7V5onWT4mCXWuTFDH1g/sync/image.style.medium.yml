@@ -1,0 +1,14 @@
+uuid: b54f80a0-8be2-4f60-a100-fb9d3184ae9f
+langcode: en
+status: true
+dependencies: {  }
+name: medium
+label: 'Medium (480x320 scale and crop)'
+effects:
+  bc179381-432b-42f1-8b91-22d55a87cd35:
+    uuid: bc179381-432b-42f1-8b91-22d55a87cd35
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 480
+      height: 320

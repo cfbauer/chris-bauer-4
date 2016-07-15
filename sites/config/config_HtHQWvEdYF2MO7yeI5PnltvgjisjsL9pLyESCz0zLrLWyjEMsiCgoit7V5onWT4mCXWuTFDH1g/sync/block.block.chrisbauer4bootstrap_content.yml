@@ -1,0 +1,20 @@
+uuid: 553c0461-ad16-44a1-8c09-9cd92f33f0cc
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - chrisbauer4bootstrap
+id: chrisbauer4bootstrap_content
+theme: chrisbauer4bootstrap
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }

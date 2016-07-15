@@ -1,0 +1,10 @@
+uuid: ea43407b-d1c7-4899-a3f4-947f6bc3a1ea
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.link_class
+label: 'Link Class'
+targetEntityType: node
+cache: true

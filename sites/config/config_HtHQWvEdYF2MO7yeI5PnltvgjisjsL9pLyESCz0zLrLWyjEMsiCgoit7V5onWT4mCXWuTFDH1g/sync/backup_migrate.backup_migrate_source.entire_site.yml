@@ -1,0 +1,9 @@
+uuid: de62df81-635c-4c64-9e00-b39b2fe6fd5a
+langcode: en
+status: true
+dependencies: {  }
+id: entire_site
+label: 'Entire Site'
+type: EntireSite
+config:
+  name: 'Entire Site'

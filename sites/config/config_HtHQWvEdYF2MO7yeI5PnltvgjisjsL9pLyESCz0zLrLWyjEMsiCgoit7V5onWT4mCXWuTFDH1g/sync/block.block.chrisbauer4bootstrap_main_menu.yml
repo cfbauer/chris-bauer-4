@@ -1,0 +1,24 @@
+uuid: be029f5b-7ab7-4ca0-8800-b23caba7ec2e
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - chrisbauer4bootstrap
+id: chrisbauer4bootstrap_main_menu
+theme: chrisbauer4bootstrap
+region: navigation
+weight: 0
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 1
+visibility: {  }

@@ -1,0 +1,23 @@
+uuid: 620e89ee-12a3-4f68-be4a-944a86ef0724
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - cbclassy
+id: cbclassy_branding
+theme: cbclassy
+region: header
+weight: -6
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  provider: system
+  label_display: '0'
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: true
+visibility: {  }

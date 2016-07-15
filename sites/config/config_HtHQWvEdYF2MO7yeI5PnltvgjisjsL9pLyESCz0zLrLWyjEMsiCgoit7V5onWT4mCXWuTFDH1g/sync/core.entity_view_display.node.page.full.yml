@@ -1,0 +1,51 @@
+uuid: 315376b9-8583-4135-9111-d2860912ddf7
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.page.body
+    - field.field.node.page.field_hero_image
+    - image.style.hero_image
+    - node.type.page
+  module:
+    - field_formatter_class
+    - image
+    - text
+    - title
+    - user
+id: node.page.full
+targetEntityType: node
+bundle: page
+mode: full
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+  field_hero_image:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: hero_image
+      image_link: ''
+    third_party_settings:
+      field_formatter_class:
+        class: ''
+    type: image
+  links:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+  title:
+    type: linked_and_wrapped
+    settings:
+      tag: h1
+      linked: false
+      classes: ''
+    weight: 1
+    label: inline
+    third_party_settings: {  }
+hidden: {  }

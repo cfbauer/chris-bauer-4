@@ -1,0 +1,20 @@
+uuid: 7e3b6391-d21f-4449-a090-ecaaeda1c4c9
+langcode: en
+status: true
+dependencies:
+  theme:
+    - cbclassy
+id: cbclassy_local_tasks
+theme: cbclassy
+region: content
+weight: -4
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: true
+visibility: {  }

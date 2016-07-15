@@ -1,0 +1,120 @@
+uuid: 0222ef82-3ed9-4bb1-982b-65c97f30933d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.portfolio_item.body
+    - field.field.node.portfolio_item.field_link
+    - field.field.node.portfolio_item.field_portfolio_image
+    - node.type.portfolio_item
+  module:
+    - field_formatter_class
+    - link
+    - slick
+    - text
+    - title
+    - user
+id: node.portfolio_item.default
+targetEntityType: node
+bundle: portfolio_item
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+  field_link:
+    weight: 4
+    label: hidden
+    settings:
+      trim_length: 80
+      rel: nofollow
+      url_only: false
+      url_plain: false
+      target: '0'
+    third_party_settings:
+      field_formatter_class:
+        class: ''
+    type: link
+  field_portfolio_image:
+    weight: 2
+    label: hidden
+    settings:
+      optionset: default
+      optionset_thumbnail: ''
+      skin: ''
+      skin_thumbnail: ''
+      image_style: medium
+      thumbnail_style: ''
+      thumbnail_effect: ''
+      media_switch: ''
+      ratio: ''
+      layout: ''
+      thumbnail_caption: ''
+      cache: -1
+      sizes: ''
+      breakpoints:
+        xs:
+          image_style: ''
+          width: ''
+          breakpoint: ''
+        sm:
+          image_style: ''
+          width: ''
+          breakpoint: ''
+        md:
+          image_style: ''
+          width: ''
+          breakpoint: ''
+        lg:
+          image_style: ''
+          width: ''
+          breakpoint: ''
+        xl:
+          image_style: ''
+          width: ''
+          breakpoint: ''
+      current_view_mode: default
+      background: false
+      caption:
+        title: '0'
+        alt: '0'
+      skin_arrows: ''
+      skin_dots: ''
+      responsive_image_style: ''
+      override: false
+      overridables:
+        arrows: '0'
+        autoplay: '0'
+        dots: '0'
+        draggable: '0'
+        infinite: '0'
+        mouseWheel: '0'
+        randomize: '0'
+        variableWidth: '0'
+      display: main
+      item_id: ''
+      box_caption: {  }
+      box_caption_custom: ''
+      box_style: ''
+      icon: false
+    third_party_settings:
+      field_formatter_class:
+        class: ''
+    type: slick_image
+  links:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+  title:
+    type: linked_and_wrapped
+    settings:
+      tag: h1
+      linked: false
+      classes: ''
+    weight: 3
+    label: above
+    third_party_settings: {  }
+hidden: {  }

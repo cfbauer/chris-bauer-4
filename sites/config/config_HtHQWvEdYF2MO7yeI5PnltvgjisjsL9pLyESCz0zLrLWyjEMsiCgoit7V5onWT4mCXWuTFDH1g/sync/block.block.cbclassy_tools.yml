@@ -1,0 +1,24 @@
+uuid: 0673ea53-c34a-4e2e-8139-954d47e296b8
+langcode: en
+status: false
+dependencies:
+  config:
+    - system.menu.tools
+  module:
+    - system
+  theme:
+    - cbclassy
+id: cbclassy_tools
+theme: cbclassy
+region: '-1'
+weight: -1
+provider: null
+plugin: 'system_menu_block:tools'
+settings:
+  id: 'system_menu_block:tools'
+  label: Tools
+  provider: system
+  label_display: visible
+  level: 1
+  depth: 0
+visibility: {  }

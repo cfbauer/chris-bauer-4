@@ -1,0 +1,18 @@
+uuid: 6142950d-beb6-40c1-8c4d-ea44f38f6a62
+langcode: en
+status: true
+dependencies:
+  theme:
+    - cbclassy
+id: cbclassy_local_actions
+theme: cbclassy
+region: content
+weight: -5
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }
