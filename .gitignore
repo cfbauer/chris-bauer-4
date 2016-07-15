@@ -37,3 +37,5 @@ sites/simpletest
 
 .sass-cache
 .sass-cache/*
+
+sites/default/*
