@@ -11,7 +11,6 @@ dependencies:
     - field_formatter_class
     - image
     - text
-    - title
     - user
 id: node.page.default
 targetEntityType: node
@@ -37,14 +36,5 @@ content:
   links:
     weight: 3
     settings: {  }
-    third_party_settings: {  }
-  title:
-    type: linked_and_wrapped
-    settings:
-      tag: h1
-      linked: false
-      classes: ''
-    weight: 1
-    label: inline
     third_party_settings: {  }
 hidden: {  }
