@@ -1,0 +1,6 @@
+name: Chris Custom Theme Module
+type: module
+description: 'Random stuff goes here'
+package: Development
+core: 8.x
+configure: theme.form
