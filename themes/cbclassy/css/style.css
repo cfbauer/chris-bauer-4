@@ -3317,15 +3317,6 @@ a {
   display: block;
 }
 
-/* line 48, ../sass/materialize/components/_global.scss */
-ul {
-  padding: 0;
-}
-/* line 50, ../sass/materialize/components/_global.scss */
-ul li {
-  list-style-type: none;
-}
-
 /* line 56, ../sass/materialize/components/_global.scss */
 .clearfix {
   clear: both;
