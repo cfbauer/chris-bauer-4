@@ -37,15 +37,11 @@ p {
   margin-bottom: 1rem;
 }
 
-//a:link,
-//a:visited {
-//  color: $primary;
-//  text-decoration: none;
-//}
-//a:hover,
-//a:active {
-//  color: $secondary;
-//}
+ul {
+ list-style: disc;
+  line-height: 160%;
+  padding: 0 40px;
+}
 
 /*
 * Sitewide elements

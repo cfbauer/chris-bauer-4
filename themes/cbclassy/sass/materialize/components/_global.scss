@@ -17,13 +17,13 @@ main {
   // flex: 1 0 auto;
 }
 
-ul {
-  &.browser-default {
-    list-style-type: initial;
-  }
-
-  list-style-type: none;
-}
+//ul {
+//  &.browser-default {
+//    list-style-type: initial;
+//  }
+//
+//  list-style-type: none;
+//}
 
 a {
 	color: $link-color;
