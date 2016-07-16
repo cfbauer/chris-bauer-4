@@ -9048,7 +9048,7 @@ main:after, .wrapper:after {
 
 /* line 110, ../sass/style.scss */
 main {
-  margin: 0 0 4rem 0;
+  margin-bottom: 4rem;
 }
 
 /*
