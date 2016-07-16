@@ -8973,31 +8973,25 @@ ul {
 /*
 * Sitewide elements
 */
-/* line 49, ../sass/style.scss */
-header {
-  margin-bottom: 50px;
+@media (min-width: 768px) {
+  /* line 49, ../sass/style.scss */
+  header {
+    margin-bottom: 50px;
+  }
 }
 
-/*
-* Home Page
-*/
-/* line 67, ../sass/style.scss */
-.site-logo {
-  float: left;
-  margin-right: 20px;
-}
-
-/* line 71, ../sass/style.scss */
-.site-name a {
-  color: #727272;
-  line-height: 50px;
+/* line 62, ../sass/style.scss */
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 /*
 * Layout
 */
-/* line 93, ../sass/style.scss */
+/* line 81, ../sass/style.scss */
 main, .wrapper {
+  padding: 0 1rem;
   *zoom: 1;
 }
 /* line 38, ../../../../../../../../home/chris/.rvm/gems/ruby-2.3.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/general/_clearfix.scss */
@@ -9007,21 +9001,20 @@ main:after, .wrapper:after {
   clear: both;
 }
 @media (min-width: 768px) {
-  /* line 93, ../sass/style.scss */
+  /* line 81, ../sass/style.scss */
   main, .wrapper {
-    max-width: 768px;
     margin: 0 auto;
   }
 }
 @media (min-width: 1200px) {
-  /* line 93, ../sass/style.scss */
+  /* line 81, ../sass/style.scss */
   main, .wrapper {
     max-width: 1200px;
   }
 }
 
 @media (min-width: 768px) {
-  /* line 104, ../sass/style.scss */
+  /* line 92, ../sass/style.scss */
   .region-content {
     width: 65.95745%;
     float: left;
@@ -9032,7 +9025,7 @@ main:after, .wrapper:after {
 }
 
 @media (min-width: 768px) {
-  /* line 110, ../sass/style.scss */
+  /* line 98, ../sass/style.scss */
   .block-system-branding-block {
     width: 31.91489%;
     float: left;
@@ -9043,7 +9036,7 @@ main:after, .wrapper:after {
 }
 
 @media (min-width: 768px) {
-  /* line 116, ../sass/style.scss */
+  /* line 104, ../sass/style.scss */
   .block-menu.navigation {
     width: 65.95745%;
     float: right;
@@ -9053,22 +9046,33 @@ main:after, .wrapper:after {
   }
 }
 
+/* line 110, ../sass/style.scss */
+main {
+  margin: 0 0 4rem 0;
+}
+
 /*
 * Component Styles
 */
-/* line 128, ../sass/style.scss */
+/* line 120, ../sass/style.scss */
 .block-menu.navigation ul.menu {
-  float: right;
+  clear: both;
   font-size: 1.25rem;
 }
-/* line 132, ../sass/style.scss */
+@media (min-width: 768px) {
+  /* line 120, ../sass/style.scss */
+  .block-menu.navigation ul.menu {
+    float: right;
+  }
+}
+/* line 127, ../sass/style.scss */
 .block-menu.navigation li.menu-item {
   float: left;
   margin-right: 20px;
   line-height: 48px;
 }
 
-/* line 141, ../sass/style.scss */
+/* line 136, ../sass/style.scss */
 .field--name-field-hero-image img {
   margin: 0 auto;
   display: block;
@@ -9077,3 +9081,22 @@ main:after, .wrapper:after {
 /*
 * Forms
 */
+/* line 147, ../sass/style.scss */
+.contact-form {
+  margin-top: 5rem;
+}
+
+/*
+* Home Page
+*/
+/* line 155, ../sass/style.scss */
+.site-logo {
+  float: left;
+  margin-right: 20px;
+}
+
+/* line 159, ../sass/style.scss */
+.site-name a {
+  color: #727272;
+  line-height: 50px;
+}

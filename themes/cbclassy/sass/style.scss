@@ -38,7 +38,7 @@ p {
 }
 
 ul {
- list-style: disc;
+  list-style: disc;
   line-height: 160%;
   padding: 0 40px;
 }
@@ -51,36 +51,24 @@ header {
   @extend .lighten-3;
   @extend .section;
   @extend .z-depth-1;
-  margin-bottom: $spacing-unit;
+  @include breakpoint($tablet) {
+    margin-bottom: $spacing-unit;
+  }
 }
 
 main {
   @extend .section;
 }
-
-
-
-/*
-* Home Page
-*/
-
-.site-logo {
-  float: left;
-  margin-right: 20px;
+img {
+  max-width: 100%;
+  height: auto;
 }
-.site-name a {
-  @extend h4;
-  color: $gray;
-  line-height: 50px;
-}
-
-
 
 /*
 * Layout
 */
 
-  //debug mode
+//   debug mode
 //@include sgs-change('debug', true);
 //main {
 //  @include background-grid($color: pink);
@@ -91,9 +79,9 @@ main {
 @include add-gutter(1/3);
 
 main, .wrapper {
+  padding: 0 1rem;
   @include pie-clearfix;
   @include breakpoint($tablet) {
-    max-width: $tablet;
     margin: 0 auto;
   }
   @include breakpoint($desktop) {
@@ -119,6 +107,10 @@ main, .wrapper {
   }
 }
 
+main {
+  margin: 0 0 4rem 0;
+}
+
 /*
 * Component Styles
 */
@@ -126,8 +118,11 @@ main, .wrapper {
 // navigation
 .block-menu.navigation {
   ul.menu {
-    float: right;
+    clear: both;
     font-size: 1.25rem;
+    @include breakpoint($tablet) {
+      float: right;
+    }
   }
   li.menu-item {
     float: left;
@@ -149,6 +144,20 @@ main, .wrapper {
 /*
 * Forms
 */
-//textarea {
-//  @extend .materialize-textarea;
-//}
+.contact-form {
+  margin-top: 5rem;
+}
+
+/*
+* Home Page
+*/
+
+.site-logo {
+  float: left;
+  margin-right: 20px;
+}
+.site-name a {
+  @extend h4;
+  color: $gray;
+  line-height: 50px;
+}
