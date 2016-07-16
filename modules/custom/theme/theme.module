@@ -7,7 +7,7 @@ use Drupal\Core\Routing\RouteMatchInterface;
 * Implements hook_form_alter()
 */
 function theme_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
-  if('contact_message_custom_contact_form_form' == $form_id || 'chris_contact_form_custom_contact_form_form' == $form_id){
+  if('contact_message_custom_contact_form_form' == $form_id || 'contact_message_chris_contact_form' == $form_id){
     $form['actions']['submit']['#attributes']['class'][] = 'btn';
     $form['actions']['preview']['#attributes']['class'][] = 'btn';
   }
