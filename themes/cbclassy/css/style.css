@@ -5343,7 +5343,7 @@ small {
 }
 
 /* line 1, ../sass/materialize/components/_tabs.scss */
-.tabs {
+.tabs-materialize {
   display: flex;
   position: relative;
   overflow-x: auto;
@@ -5355,7 +5355,7 @@ small {
   white-space: nowrap;
 }
 /* line 12, ../sass/materialize/components/_tabs.scss */
-.tabs .tab {
+.tabs-materialize .tab {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
@@ -5375,7 +5375,7 @@ small {
   min-width: 80px;
 }
 /* line 31, ../sass/materialize/components/_tabs.scss */
-.tabs .tab a {
+.tabs-materialize .tab a {
   color: #8bc34a;
   display: block;
   width: 100%;
@@ -5385,16 +5385,16 @@ small {
   transition: color .28s ease;
 }
 /* line 39, ../sass/materialize/components/_tabs.scss */
-.tabs .tab a:hover {
+.tabs-materialize .tab a:hover {
   color: #bcdc97;
 }
 /* line 44, ../sass/materialize/components/_tabs.scss */
-.tabs .tab.disabled a {
+.tabs-materialize .tab.disabled a {
   color: #bcdc97;
   cursor: default;
 }
 /* line 49, ../sass/materialize/components/_tabs.scss */
-.tabs .indicator {
+.tabs-materialize .indicator {
   position: absolute;
   bottom: 0;
   height: 2px;
