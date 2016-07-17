@@ -1332,7 +1332,7 @@ $(document).ready(function(){
   };
 
   $(document).ready(function(){
-    $('ul.tabs').tabs();
+    $('ul.tabs-materialize').tabs();
   });
 }( jQuery ));
 ;(function ($) {
