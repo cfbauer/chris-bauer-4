@@ -1,0 +1,46 @@
+/*
+* Layout
+*/
+
+//   debug mode
+//@include sgs-change('debug', true);
+//main {
+//  @include background-grid($color: pink);
+//}
+
+
+@include add-grid(12);
+@include add-gutter(1/3);
+
+main, .wrapper {
+  padding: 0 1rem;
+  @include pie-clearfix;
+  @include breakpoint($tablet) {
+    margin: 0 auto;
+  }
+  @include breakpoint($desktop) {
+    max-width: $desktop;
+  }
+}
+
+.region-content {
+  @include breakpoint($tablet) {
+    @include grid-span(8, 3);
+  }
+}
+
+.block-system-branding-block {
+  @include breakpoint($tablet) {
+    @include grid-span(4, 1);
+  }
+}
+
+.block-menu.navigation {
+  @include breakpoint($tablet) {
+    @include grid-span(8, 5)
+  }
+}
+
+main {
+  margin-bottom: 4rem;
+}

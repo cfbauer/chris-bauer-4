@@ -68,6 +68,71 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 *
 * .75 1 1.25 1.56 1.95 2.44
 */
+/*
+* Layout
+*/
+/* line 15, ../sass/_layout.scss */
+main, .wrapper {
+  padding: 0 1rem;
+  *zoom: 1;
+}
+/* line 38, ../../../../../../../../home/chris/.rvm/gems/ruby-2.3.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/general/_clearfix.scss */
+main:after, .wrapper:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+@media (min-width: 768px) {
+  /* line 15, ../sass/_layout.scss */
+  main, .wrapper {
+    margin: 0 auto;
+  }
+}
+@media (min-width: 1200px) {
+  /* line 15, ../sass/_layout.scss */
+  main, .wrapper {
+    max-width: 1200px;
+  }
+}
+
+@media (min-width: 768px) {
+  /* line 26, ../sass/_layout.scss */
+  .region-content {
+    width: 65.95745%;
+    float: left;
+    margin-right: -100%;
+    margin-left: 17.02128%;
+    clear: none;
+  }
+}
+
+@media (min-width: 768px) {
+  /* line 32, ../sass/_layout.scss */
+  .block-system-branding-block {
+    width: 31.91489%;
+    float: left;
+    margin-right: -100%;
+    margin-left: 0;
+    clear: none;
+  }
+}
+
+@media (min-width: 768px) {
+  /* line 38, ../sass/_layout.scss */
+  .block-menu.navigation {
+    width: 65.95745%;
+    float: right;
+    margin-left: 0;
+    margin-right: 0;
+    clear: none;
+  }
+}
+
+/* line 44, ../sass/_layout.scss */
+main {
+  margin-bottom: 4rem;
+}
+
 /* line 370, ../sass/materialize/components/_color.scss */
 .materialize-red {
   background-color: #e51c23 !important;
@@ -3319,12 +3384,12 @@ a {
 }
 
 /* line 65, ../sass/materialize/components/_global.scss */
-.z-depth-1, .card-panel, .card, .toast, .btn, .btn-large, .btn-floating, .dropdown-content, .collapsible, .side-nav, header {
+.z-depth-1, .card-panel, .card, .toast, .btn, .btn-large, input[type=submit], .btn-floating, .dropdown-content, .collapsible, .side-nav, header {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
 /* line 68, ../sass/materialize/components/_global.scss */
-.z-depth-1-half, .btn:hover, .btn-large:hover, .btn-floating:hover {
+.z-depth-1-half, .btn:hover, .btn-large:hover, input[type=submit]:hover, .btn-floating:hover {
   box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
 }
 
@@ -5228,14 +5293,14 @@ small {
   z-index: 2;
 }
 /* line 107, ../sass/materialize/components/_cards.scss */
-.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
+.card .card-action a:not(.btn):not(.btn-large):not(input[type=submit]):not(.btn-large):not(.btn-floating) {
   color: #ffab40;
   margin-right: 20px;
   transition: color .3s ease;
   text-transform: uppercase;
 }
 /* line 113, ../sass/materialize/components/_cards.scss */
-.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating):hover {
+.card .card-action a:not(.btn):not(.btn-large):not(input[type=submit]):not(.btn-large):not(.btn-floating):hover {
   color: #ffd8a6;
 }
 /* line 116, ../sass/materialize/components/_cards.scss */
@@ -5314,7 +5379,7 @@ small {
   justify-content: space-between;
 }
 /* line 45, ../sass/materialize/components/_toast.scss */
-.toast .btn, .toast .btn-large, .toast .btn-flat {
+.toast .btn, .toast .btn-large, .toast input[type=submit], .toast .btn-flat {
   margin: 0;
   margin-left: 3rem;
 }
@@ -5439,7 +5504,7 @@ small {
 }
 
 /* line 2, ../sass/materialize/components/_buttons.scss */
-.btn, .btn-large,
+.btn, .btn-large, input[type=submit],
 .btn-flat {
   border: none;
   border-radius: 2px;
@@ -5454,12 +5519,14 @@ small {
 }
 
 /* line 18, ../sass/materialize/components/_buttons.scss */
-.btn.disabled, .disabled.btn-large,
+.btn.disabled, .disabled.btn-large, input.disabled[type=submit],
 .btn-floating.disabled,
 .btn-large.disabled,
 .btn:disabled
 .btn-large:disabled,
 .btn-large:disabled
+.btn-large:disabled,
+input[type=submit]:disabled
 .btn-large:disabled,
 .btn-floating:disabled {
   background-color: #DFDFDF !important;
@@ -5468,23 +5535,27 @@ small {
   cursor: default;
 }
 /* line 29, ../sass/materialize/components/_buttons.scss */
-.btn.disabled *, .disabled.btn-large *,
+.btn.disabled *, .disabled.btn-large *, input.disabled[type=submit] *,
 .btn-floating.disabled *,
 .btn-large.disabled *,
 .btn:disabled
 .btn-large:disabled *,
 .btn-large:disabled
 .btn-large:disabled *,
+input[type=submit]:disabled
+.btn-large:disabled *,
 .btn-floating:disabled * {
   pointer-events: none;
 }
 /* line 33, ../sass/materialize/components/_buttons.scss */
-.btn.disabled:hover, .disabled.btn-large:hover,
+.btn.disabled:hover, .disabled.btn-large:hover, input.disabled[type=submit]:hover,
 .btn-floating.disabled:hover,
 .btn-large.disabled:hover,
 .btn:disabled
 .btn-large:disabled:hover,
 .btn-large:disabled
+.btn-large:disabled:hover,
+input[type=submit]:disabled
 .btn-large:disabled:hover,
 .btn-floating:disabled:hover {
   background-color: #DFDFDF !important;
@@ -5492,7 +5563,7 @@ small {
 }
 
 /* line 44, ../sass/materialize/components/_buttons.scss */
-.btn i, .btn-large i,
+.btn i, .btn-large i, input[type=submit] i,
 .btn-floating i,
 .btn-large i,
 .btn-flat i {
@@ -5501,7 +5572,7 @@ small {
 }
 
 /* line 51, ../sass/materialize/components/_buttons.scss */
-.btn, .btn-large {
+.btn, .btn-large, input[type=submit] {
   text-decoration: none;
   color: #fff;
   background-color: #607d8b;
@@ -5511,7 +5582,7 @@ small {
   cursor: pointer;
 }
 /* line 61, ../sass/materialize/components/_buttons.scss */
-.btn:hover, .btn-large:hover {
+.btn:hover, .btn-large:hover, input[type=submit]:hover {
   background-color: #6b8a99;
 }
 
@@ -5710,7 +5781,7 @@ button.btn-floating {
  * https://github.com/fians/Waves/blob/master/LICENSE
  */
 /* line 12, ../sass/materialize/components/_waves.scss */
-.waves-effect {
+.waves-effect, input[type=submit] {
   position: relative;
   cursor: pointer;
   display: inline-block;
@@ -5726,7 +5797,7 @@ button.btn-floating {
   transition: all .3s ease-out;
 }
 /* line 39, ../sass/materialize/components/_waves.scss */
-.waves-effect .waves-ripple {
+.waves-effect .waves-ripple, input[type=submit] .waves-ripple {
   position: absolute;
   border-radius: 50%;
   width: 20px;
@@ -5741,35 +5812,35 @@ button.btn-floating {
   pointer-events: none;
 }
 /* line 61, ../sass/materialize/components/_waves.scss */
-.waves-effect.waves-light .waves-ripple {
+.waves-effect.waves-light .waves-ripple, input[type=submit] .waves-ripple {
   background-color: rgba(255, 255, 255, 0.45);
 }
 /* line 65, ../sass/materialize/components/_waves.scss */
-.waves-effect.waves-red .waves-ripple {
+.waves-effect.waves-red .waves-ripple, input.waves-red[type=submit] .waves-ripple {
   background-color: rgba(244, 67, 54, 0.7);
 }
 /* line 68, ../sass/materialize/components/_waves.scss */
-.waves-effect.waves-yellow .waves-ripple {
+.waves-effect.waves-yellow .waves-ripple, input.waves-yellow[type=submit] .waves-ripple {
   background-color: rgba(255, 235, 59, 0.7);
 }
 /* line 71, ../sass/materialize/components/_waves.scss */
-.waves-effect.waves-orange .waves-ripple {
+.waves-effect.waves-orange .waves-ripple, input.waves-orange[type=submit] .waves-ripple {
   background-color: rgba(255, 152, 0, 0.7);
 }
 /* line 74, ../sass/materialize/components/_waves.scss */
-.waves-effect.waves-purple .waves-ripple {
+.waves-effect.waves-purple .waves-ripple, input.waves-purple[type=submit] .waves-ripple {
   background-color: rgba(156, 39, 176, 0.7);
 }
 /* line 77, ../sass/materialize/components/_waves.scss */
-.waves-effect.waves-green .waves-ripple {
+.waves-effect.waves-green .waves-ripple, input.waves-green[type=submit] .waves-ripple {
   background-color: rgba(76, 175, 80, 0.7);
 }
 /* line 80, ../sass/materialize/components/_waves.scss */
-.waves-effect.waves-teal .waves-ripple {
+.waves-effect.waves-teal .waves-ripple, input.waves-teal[type=submit] .waves-ripple {
   background-color: rgba(0, 150, 136, 0.7);
 }
 /* line 85, ../sass/materialize/components/_waves.scss */
-.waves-effect input[type="button"], .waves-effect input[type="reset"], .waves-effect input[type="submit"] {
+.waves-effect input[type="button"], input[type=submit] input[type="button"], .waves-effect input[type="reset"], input[type=submit] input[type="reset"], .waves-effect input[type="submit"], input[type=submit] input[type="submit"] {
   border: 0;
   font-style: normal;
   font-size: inherit;
@@ -5864,7 +5935,7 @@ a.waves-effect .waves-ripple {
   width: 100%;
 }
 /* line 40, ../sass/materialize/components/_modal.scss */
-.modal .modal-footer .btn, .modal .modal-footer .btn-large, .modal .modal-footer .btn-flat {
+.modal .modal-footer .btn, .modal .modal-footer .btn-large, .modal .modal-footer input[type=submit], .modal .modal-footer .btn-flat {
   float: right;
   margin: 6px 0;
 }
@@ -7113,7 +7184,7 @@ select:disabled {
   width: 100%;
 }
 /* line 14, ../sass/materialize/components/forms/_file-input.scss */
-.file-field .btn, .file-field .btn-large {
+.file-field .btn, .file-field .btn-large, .file-field input[type=submit] {
   float: left;
   height: 3rem;
   line-height: 3rem;
@@ -8926,177 +8997,116 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
     margin-bottom: 5em;
   }
 }
-/* line 11, ../sass/style.scss */
+/* line 12, ../sass/style.scss */
 htmnl {
   font-size: 16px;
 }
 
-/* line 15, ../sass/style.scss */
+/* line 16, ../sass/style.scss */
 body {
   font: 1.25rem/28px "Roboto Condensed", sans-serif;
   color: #212121;
 }
 
-/* line 20, ../sass/style.scss */
+/* line 21, ../sass/style.scss */
 h1, h2, h3, h4, .site-name a {
   font: 700 2.44rem "Roboto Condensed", sans-serif;
   margin-bottom: 1rem;
 }
 
-/* line 26, ../sass/style.scss */
+/* line 27, ../sass/style.scss */
 h2 {
   font-size: 2.44rem;
 }
 
-/* line 29, ../sass/style.scss */
+/* line 30, ../sass/style.scss */
 h3 {
   font-size: 1.95rem;
 }
 
-/* line 32, ../sass/style.scss */
+/* line 33, ../sass/style.scss */
 h4, .site-name a {
   font-size: 1.56rem;
 }
 
-/* line 36, ../sass/style.scss */
+/* line 37, ../sass/style.scss */
 p {
   margin-bottom: 1rem;
 }
 
-/* line 40, ../sass/style.scss */
+/* line 41, ../sass/style.scss */
 ul {
   list-style: disc;
   line-height: 160%;
   padding: 0 40px;
 }
 
-/*
-* Sitewide elements
-*/
-@media (min-width: 768px) {
-  /* line 49, ../sass/style.scss */
-  header {
-    margin-bottom: 50px;
-  }
-}
-
-/* line 62, ../sass/style.scss */
+/* line 47, ../sass/style.scss */
 img {
   max-width: 100%;
   height: auto;
 }
 
 /*
-* Layout
+* Sitewide elements
 */
-/* line 81, ../sass/style.scss */
-main, .wrapper {
-  padding: 0 1rem;
-  *zoom: 1;
-}
-/* line 38, ../../../../../../../../home/chris/.rvm/gems/ruby-2.3.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/general/_clearfix.scss */
-main:after, .wrapper:after {
-  content: "";
-  display: table;
-  clear: both;
-}
 @media (min-width: 768px) {
-  /* line 81, ../sass/style.scss */
-  main, .wrapper {
-    margin: 0 auto;
-  }
-}
-@media (min-width: 1200px) {
-  /* line 81, ../sass/style.scss */
-  main, .wrapper {
-    max-width: 1200px;
+  /* line 55, ../sass/style.scss */
+  header {
+    margin-bottom: 50px;
   }
 }
 
-@media (min-width: 768px) {
-  /* line 92, ../sass/style.scss */
-  .region-content {
-    width: 65.95745%;
-    float: left;
-    margin-right: -100%;
-    margin-left: 17.02128%;
-    clear: none;
-  }
-}
-
-@media (min-width: 768px) {
-  /* line 98, ../sass/style.scss */
-  .block-system-branding-block {
-    width: 31.91489%;
-    float: left;
-    margin-right: -100%;
-    margin-left: 0;
-    clear: none;
-  }
-}
-
-@media (min-width: 768px) {
-  /* line 104, ../sass/style.scss */
-  .block-menu.navigation {
-    width: 65.95745%;
-    float: right;
-    margin-left: 0;
-    margin-right: 0;
-    clear: none;
-  }
-}
-
-/* line 110, ../sass/style.scss */
-main {
-  margin-bottom: 4rem;
+/*
+* Forms
+*/
+/* line 72, ../sass/style.scss */
+.contact-form {
+  margin-top: 5rem;
 }
 
 /*
 * Component Styles
 */
-/* line 120, ../sass/style.scss */
+/* line 87, ../sass/style.scss */
 .block-menu.navigation ul.menu {
   clear: both;
   font-size: 1.25rem;
 }
 @media (min-width: 768px) {
-  /* line 120, ../sass/style.scss */
+  /* line 87, ../sass/style.scss */
   .block-menu.navigation ul.menu {
     float: right;
   }
 }
-/* line 127, ../sass/style.scss */
+/* line 94, ../sass/style.scss */
 .block-menu.navigation li.menu-item {
   float: left;
   margin-right: 20px;
   line-height: 48px;
 }
 
-/* line 136, ../sass/style.scss */
+/* line 103, ../sass/style.scss */
 .field--name-field-hero-image img {
   margin: 0 auto;
   display: block;
 }
 
 /*
-* Forms
-*/
-/* line 147, ../sass/style.scss */
-.contact-form {
-  margin-top: 5rem;
-}
-
-/*
 * Home Page
 */
-/* line 155, ../sass/style.scss */
+/* line 115, ../sass/style.scss */
 .site-logo {
   float: left;
   margin-right: 20px;
 }
 
-/* line 159, ../sass/style.scss */
+/* line 119, ../sass/style.scss */
 .site-name a {
   color: #727272;
   line-height: 50px;
 }
+
+/*
+* Portfolio Detail
+*/
