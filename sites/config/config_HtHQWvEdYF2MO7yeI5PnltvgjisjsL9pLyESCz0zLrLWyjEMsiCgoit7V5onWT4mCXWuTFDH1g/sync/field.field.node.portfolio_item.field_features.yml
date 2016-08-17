@@ -1,0 +1,28 @@
+uuid: a6d739c4-1ad5-486f-8f84-403a38e218c1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_features
+    - node.type.portfolio_item
+    - taxonomy.vocabulary.features
+id: node.portfolio_item.field_features
+field_name: field_features
+entity_type: node
+bundle: portfolio_item
+label: Features
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      features: features
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

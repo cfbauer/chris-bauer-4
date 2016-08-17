@@ -1,0 +1,14 @@
+uuid: c4b7987a-a7fd-4299-a1e5-8e859a75e809
+langcode: en
+status: true
+dependencies: {  }
+name: portfolio_image
+label: 'Portfolio Image (260x260 scale and crop)'
+effects:
+  a24461c0-60e5-4830-82f1-ce2b4d232ad4:
+    uuid: a24461c0-60e5-4830-82f1-ce2b4d232ad4
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 260
+      height: 260

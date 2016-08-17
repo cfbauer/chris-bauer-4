@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - field.field.node.portfolio_item.body
+    - field.field.node.portfolio_item.field_company
+    - field.field.node.portfolio_item.field_features
     - field.field.node.portfolio_item.field_link
     - field.field.node.portfolio_item.field_portfolio_image
     - image.style.thumbnail
@@ -31,6 +33,22 @@ content:
     weight: 10
     settings: {  }
     third_party_settings: {  }
+  field_company:
+    weight: 35
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+  field_features:
+    weight: 36
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
   field_link:
     weight: 34
     settings:
