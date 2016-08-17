@@ -3394,7 +3394,7 @@ a {
 }
 
 /* line 71, ../sass/materialize/components/_global.scss */
-.z-depth-2, .field--name-field-hero-image img {
+.z-depth-2, .field--name-field-hero-image img, .views-field-field-portfolio-image img {
   box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -3877,7 +3877,7 @@ td, th {
   position: relative;
 }
 /* line 509, ../sass/materialize/components/_global.scss */
-.collection .collection-item.avatar .circle, .collection .collection-item.avatar .field--name-field-hero-image img, .field--name-field-hero-image .collection .collection-item.avatar img {
+.collection .collection-item.avatar .circle, .collection .collection-item.avatar .field--name-field-hero-image img, .field--name-field-hero-image .collection .collection-item.avatar img, .collection .collection-item.avatar .views-field-field-portfolio-image img, .views-field-field-portfolio-image .collection .collection-item.avatar img {
   position: absolute;
   width: 42px;
   height: 42px;
@@ -4127,7 +4127,7 @@ input[type=range] + .thumb {
 }
 
 /* line 753, ../sass/materialize/components/_global.scss */
-.circle, .field--name-field-hero-image img {
+.circle, .field--name-field-hero-image img, .views-field-field-portfolio-image img {
   border-radius: 50%;
 }
 
@@ -4184,20 +4184,20 @@ input[type=range] + .thumb {
 }
 
 /* line 21, ../sass/materialize/components/_grid.scss */
-.section, header, main, .field--name-field-hero-image {
+.section, header, main, .field--name-field-hero-image, .views-row {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
 /* line 25, ../sass/materialize/components/_grid.scss */
-.section.no-pad, header.no-pad, main.no-pad, .no-pad.field--name-field-hero-image {
+.section.no-pad, header.no-pad, main.no-pad, .no-pad.field--name-field-hero-image, .no-pad.views-row {
   padding: 0;
 }
 /* line 28, ../sass/materialize/components/_grid.scss */
-.section.no-pad-bot, header.no-pad-bot, main.no-pad-bot, .no-pad-bot.field--name-field-hero-image {
+.section.no-pad-bot, header.no-pad-bot, main.no-pad-bot, .no-pad-bot.field--name-field-hero-image, .no-pad-bot.views-row {
   padding-bottom: 0;
 }
 /* line 31, ../sass/materialize/components/_grid.scss */
-.section.no-pad-top, header.no-pad-top, main.no-pad-top, .no-pad-top.field--name-field-hero-image {
+.section.no-pad-top, header.no-pad-top, main.no-pad-top, .no-pad-top.field--name-field-hero-image, .no-pad-top.views-row {
   padding-top: 0;
 }
 
@@ -7916,7 +7916,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 /* line 239, ../sass/materialize/components/_preloader.scss */
-.gap-patch .circle, .gap-patch .field--name-field-hero-image img, .field--name-field-hero-image .gap-patch img {
+.gap-patch .circle, .gap-patch .field--name-field-hero-image img, .field--name-field-hero-image .gap-patch img, .gap-patch .views-field-field-portfolio-image img, .views-field-field-portfolio-image .gap-patch img {
   width: 1000%;
   left: -450%;
 }
@@ -7931,7 +7931,7 @@ input[type=range]:focus::-ms-fill-upper {
   border-color: inherit;
 }
 /* line 252, ../sass/materialize/components/_preloader.scss */
-.circle-clipper .circle, .circle-clipper .field--name-field-hero-image img, .field--name-field-hero-image .circle-clipper img {
+.circle-clipper .circle, .circle-clipper .field--name-field-hero-image img, .field--name-field-hero-image .circle-clipper img, .circle-clipper .views-field-field-portfolio-image img, .views-field-field-portfolio-image .circle-clipper img {
   width: 200%;
   height: 100%;
   border-width: 3px;
@@ -7948,14 +7948,14 @@ input[type=range]:focus::-ms-fill-upper {
   bottom: 0;
 }
 /* line 268, ../sass/materialize/components/_preloader.scss */
-.circle-clipper.left .circle, .circle-clipper.left .field--name-field-hero-image img, .field--name-field-hero-image .circle-clipper.left img {
+.circle-clipper.left .circle, .circle-clipper.left .field--name-field-hero-image img, .field--name-field-hero-image .circle-clipper.left img, .circle-clipper.left .views-field-field-portfolio-image img, .views-field-field-portfolio-image .circle-clipper.left img {
   left: 0;
   border-right-color: transparent !important;
   -webkit-transform: rotate(129deg);
   transform: rotate(129deg);
 }
 /* line 274, ../sass/materialize/components/_preloader.scss */
-.circle-clipper.right .circle, .circle-clipper.right .field--name-field-hero-image img, .field--name-field-hero-image .circle-clipper.right img {
+.circle-clipper.right .circle, .circle-clipper.right .field--name-field-hero-image img, .field--name-field-hero-image .circle-clipper.right img, .circle-clipper.right .views-field-field-portfolio-image img, .views-field-field-portfolio-image .circle-clipper.right img {
   left: -100%;
   border-left-color: transparent !important;
   -webkit-transform: rotate(-129deg);
@@ -7963,14 +7963,14 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 /* line 284, ../sass/materialize/components/_preloader.scss */
-.active .circle-clipper.left .circle, .active .circle-clipper.left .field--name-field-hero-image img, .field--name-field-hero-image .active .circle-clipper.left img {
+.active .circle-clipper.left .circle, .active .circle-clipper.left .field--name-field-hero-image img, .field--name-field-hero-image .active .circle-clipper.left img, .active .circle-clipper.left .views-field-field-portfolio-image img, .views-field-field-portfolio-image .active .circle-clipper.left img {
   /* duration: ARCTIME */
   -webkit-animation: left-spin 1333ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
   animation: left-spin 1333ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
 }
 
 /* line 290, ../sass/materialize/components/_preloader.scss */
-.active .circle-clipper.right .circle, .active .circle-clipper.right .field--name-field-hero-image img, .field--name-field-hero-image .active .circle-clipper.right img {
+.active .circle-clipper.right .circle, .active .circle-clipper.right .field--name-field-hero-image img, .field--name-field-hero-image .active .circle-clipper.right img, .active .circle-clipper.right .views-field-field-portfolio-image img, .views-field-field-portfolio-image .active .circle-clipper.right img {
   /* duration: ARCTIME */
   -webkit-animation: right-spin 1333ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
   animation: right-spin 1333ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
@@ -9108,5 +9108,42 @@ img {
 }
 
 /*
+* Portfolio Listing
+*/
+/* line 128, ../sass/style.scss */
+.views-row {
+  clear: both;
+  height: auto;
+  overflow: hidden;
+}
+
+/* line 134, ../sass/style.scss */
+.views-field-field-portfolio-image {
+  margin-bottom: 20px;
+}
+/* line 136, ../sass/style.scss */
+.views-field-field-portfolio-image img {
+  display: block;
+  margin: 0 auto;
+}
+@media (min-width: 1200px) {
+  /* line 134, ../sass/style.scss */
+  .views-field-field-portfolio-image {
+    float: left;
+    margin-right: 20px;
+  }
+}
+
+/*
 * Portfolio Detail
 */
+/* line 151, ../sass/style.scss */
+.field--name-field-portfolio-image {
+  height: auto;
+  overflow: hidden;
+}
+/* line 154, ../sass/style.scss */
+.field--name-field-portfolio-image .field__item {
+  float: left;
+  margin: 0 10px 10px 0;
+}
