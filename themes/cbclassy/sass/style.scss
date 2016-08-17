@@ -123,6 +123,36 @@ input[type=submit] {
 }
 
 /*
+* Portfolio Listing
+*/
+.views-row {
+  @extend .section;
+  clear: both;
+  height: auto;
+  overflow: hidden;
+}
+.views-field-field-portfolio-image {
+  margin-bottom: 20px;
+  img {
+    display: block;
+    margin: 0 auto;
+    @extend .circle;
+    @extend .z-depth-2;
+  }
+  @include breakpoint($desktop) {
+    float: left;
+    margin-right: 20px;
+  }
+}
+
+/*
 * Portfolio Detail
 */
-
+.field--name-field-portfolio-image {
+  height: auto;
+  overflow: hidden;
+  .field__item {
+    float: left;
+    margin: 0 10px 10px 0;
+  }
+}
