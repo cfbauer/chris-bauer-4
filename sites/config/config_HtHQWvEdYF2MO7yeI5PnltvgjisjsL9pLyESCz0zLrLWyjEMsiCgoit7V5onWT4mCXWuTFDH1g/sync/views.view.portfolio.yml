@@ -118,7 +118,7 @@ display:
             preserve_tags: ''
             html: false
           element_type: h3
-          element_class: ''
+          element_class: text-align-left
           element_label_type: ''
           element_label_class: ''
           element_label_colon: false
@@ -310,7 +310,20 @@ display:
             label: ''
           granularity: second
       title: Portfolio
-      header: {  }
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: false
+          content:
+            value: 'Here are some examples from my work. Please note that unless otherwise stated, I performed most of this development for one of the agencies I''ve had the pleasure of working full time for in the past. All of the credit and glory for the project belongs to them.'
+            format: basic_html
+          plugin_id: text
       footer: {  }
       empty: {  }
       relationships: {  }

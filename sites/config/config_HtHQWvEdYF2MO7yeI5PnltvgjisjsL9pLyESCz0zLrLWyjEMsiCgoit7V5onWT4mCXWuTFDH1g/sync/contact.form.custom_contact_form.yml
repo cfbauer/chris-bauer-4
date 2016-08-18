@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies: {  }
 id: custom_contact_form
-label: 'Custom Contact Form'
+label: 'Contact Chris'
 recipients:
   - cfbauer@gmail.com
 reply: ''
