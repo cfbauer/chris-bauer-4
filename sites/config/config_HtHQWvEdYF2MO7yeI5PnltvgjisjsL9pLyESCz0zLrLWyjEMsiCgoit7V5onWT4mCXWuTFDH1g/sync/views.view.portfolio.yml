@@ -321,7 +321,7 @@ display:
           empty: false
           tokenize: false
           content:
-            value: 'Here are some examples from my work. Please note that unless otherwise stated, I performed most of this development for one of the agencies I''ve had the pleasure of working full time for in the past. All of the credit and glory for the project belongs to them.'
+            value: 'Here are some examples from my work. Note that unless otherwise stated, I performed most of this development for one of the agencies I''ve had the pleasure of working full time for in the past. All credit and glory for the project belongs to them.'
             format: basic_html
           plugin_id: text
       footer: {  }
