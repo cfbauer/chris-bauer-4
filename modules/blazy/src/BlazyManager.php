@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Contains \Drupal\blazy\BlazyManager.
+ */
+
 namespace Drupal\blazy;
 
 use Drupal\Core\Cache\Cache;
@@ -336,21 +341,21 @@ class BlazyManager extends BlazyManagerBase {
       $item_attributes['width']  = $settings['width'];
     }
 
-    // With CSS background, IMG may be empty, so add thumbnail to the container.
     if (!empty($settings['thumbnail_style'])) {
-      $element['#attributes']['data-thumb'] = $this->entityLoad($settings['thumbnail_style'], 'image_style')->buildUrl($settings['uri']);
+      $settings['thumbnail_url'] = $this->entityLoad($settings['thumbnail_style'], 'image_style')->buildUrl($settings['uri']);
     }
 
     $element['#embed_url']       = empty($settings['embed_url']) ? '' : $settings['embed_url'];
     $element['#url']             = '';
     $element['#settings']        = $settings;
-    $element['#captions']        = isset($build['captions']) ? ['inline' => $build['captions']] : [];
+    $element['#captions']        = isset($build['captions']) ? $build['captions'] : [];
     $element['#item_attributes'] = $item_attributes;
 
     if (!empty($settings['media_switch']) && ($settings['media_switch'] == 'content' || strpos($settings['media_switch'], 'box') !== FALSE)) {
       $this->getMediaSwitch($element, $settings);
     }
 
+    $this->getModuleHandler()->alter($namespace . '_image_pre_render', $element, $settings);
     return $element;
   }
 
@@ -358,7 +363,6 @@ class BlazyManager extends BlazyManagerBase {
    * Gets the media switch options: colorbox, photobox, content.
    */
   public function getMediaSwitch(array &$element = [], $settings = []) {
-    $item      = $element['#item'];
     $type      = isset($settings['type']) ? $settings['type'] : 'image';
     $uri       = $settings['uri'];
     $switch    = $settings['media_switch'];
@@ -396,12 +400,10 @@ class BlazyManager extends BlazyManagerBase {
       }
 
       // Provides lightbox media dimension if so configured.
-      if ($type != 'image') {
-        if (!empty($settings['dimension'])) {
-          list($settings['box_width'], $settings['box_height']) = array_pad(array_map('trim', explode("x", $settings['dimension'], 2)), 2, NULL);
-        }
-        $json['width']  = empty($settings['box_width'])  ? $settings['width']  : $settings['box_width'];
-        $json['height'] = empty($settings['box_height']) ? $settings['height'] : $settings['box_height'];
+      if ($type != 'image' && !empty($settings['dimension'])) {
+        list($settings['width'], $settings['height']) = array_pad(array_map('trim', explode("x", $settings['dimension'], 2)), 2, NULL);
+        $json['width']  = $settings['width'];
+        $json['height'] = $settings['height'];
       }
 
       $url_attributes['class'] = $classes;
@@ -411,72 +413,12 @@ class BlazyManager extends BlazyManagerBase {
       $element['#url'] = $url;
       $element['#url_attributes'] = $url_attributes;
       $element['#settings']['lightbox'] = $switch;
-
-      if (!empty($settings['box_caption'])) {
-        $element['#captions']['lightbox'] = self::buildCaptions($item, $settings);
-      }
     }
     elseif ($switch == 'content' && !empty($settings['absolute_path'])) {
       $element['#url'] = $settings['absolute_path'];
     }
-  }
 
-  /**
-   * Build lightbox captions.
-   */
-  public static function buildCaptions($item, $settings = []) {
-    $title   = empty($item->title) ? '' : $item->title;
-    $alt     = empty($item->alt)   ? '' : $item->alt;
-    $delta   = $settings['delta'];
-    $caption = '';
-
-    switch ($settings['box_caption']) {
-      case 'auto':
-        $caption = $alt ?: $title;
-        break;
-
-      case 'alt':
-        $caption = $alt;
-        break;
-
-      case 'title':
-        $caption = $title;
-        break;
-
-      case 'alt_title':
-      case 'title_alt':
-        $alt     = $alt ? '<p>' . $alt . '</p>' : '';
-        $title   = $title ? '<h2>' . $title . '</h2>' : '';
-        $caption = $settings['box_caption'] == 'alt_title' ? $alt . $title : $title . $alt;
-        break;
-
-      case 'entity_title':
-        $caption = ($entity = $item->getEntity()) ? $entity->label() : '';
-        break;
-
-      case 'custom':
-        $token = \Drupal::token();
-        $caption = '';
-        if ($entity = $item->getEntity()) {
-          $entity_type = $entity->getEntityTypeId();
-
-          $options = array('clear' => TRUE);
-          $caption = $token->replace($settings['box_caption_custom'], array($entity_type => $entity, 'file' => $item), $options);
-
-          // Checks for multi-value text fields, and maps its delta to image.
-          if (strpos($caption, ", <p>") !== FALSE) {
-            $caption = str_replace(", <p>", '| <p>', $caption);
-            $captions = explode("|", $caption);
-            $caption = isset($captions[$delta]) ? $captions[$delta] : '';
-          }
-        }
-        break;
-
-      default:
-        $caption = '';
-    }
-
-    return empty($caption) ? [] : ['#markup' => $caption];
+    $this->getModuleHandler()->alter($namespace . '_media_switch', $element, $settings);
   }
 
   /**

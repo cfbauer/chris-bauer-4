@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Contains \Drupal\blazy\Form\BlazyAdminBase.
+ */
+
 namespace Drupal\blazy\Form;
 
 use Drupal\Core\Url;
@@ -40,11 +45,6 @@ abstract class BlazyAdminBase implements BlazyAdminInterface {
    * A state that represents the thumbnail style is enabled.
    */
   const STATE_THUMBNAIL_STYLE_ENABLED = 3;
-
-  /**
-   * A state that represents the media switch lightbox is enabled.
-   */
-  const STATE_LIGHTBOX_CUSTOM = 4;
 
   /**
    * The entity type manager service.
@@ -172,11 +172,7 @@ abstract class BlazyAdminBase implements BlazyAdminInterface {
    */
   public function breakpointsForm(array &$form, $definition = []) {
     $settings = $definition['settings'];
-    $title = t('Leave Breakpoints empty to disable multi-serving images. <small>If provided, Blazy lazyload applies. Ignored if core Responsive image is provided.<br /> If only two is needed, simply leave the rest empty. At any rate, the last should target the largest monitor.</small>');
-
-    if (isset($definition['background'])) {
-      $title .= '<small>' . t('If <strong>Use CSS background</strong> enabled, <strong>Width</strong> is treated as <strong>max-width</strong>.') . '</small>';
-    }
+    $title = t('Leave Breakpoints empty to disable multi-serving images. <small>If provided, Blazy lazyload applies. Ignored if core Responsive image is provided.<br /> If only two is needed, simply leave the rest empty.</small>');
 
     $form['sizes'] = [
       '#type'               => 'textfield',
@@ -413,12 +409,6 @@ abstract class BlazyAdminBase implements BlazyAdminInterface {
       static::STATE_LIGHTBOX_ENABLED => [
         'visible' => [
           'select[name*="[media_switch]"]' => [['value' => 'colorbox'], ['value' => 'photobox']],
-        ],
-      ],
-      static::STATE_LIGHTBOX_CUSTOM => [
-        'visible' => [
-          ['select[name*="[media_switch]"]' => [['value' => 'colorbox'], ['value' => 'photobox']]],
-          ['select[name$="[box_caption]"]' => ['value' => 'custom']],
         ],
       ],
       static::STATE_IFRAME_ENABLED => [

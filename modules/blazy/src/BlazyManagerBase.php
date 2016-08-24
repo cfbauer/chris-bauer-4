@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Contains \Drupal\blazy\BlazyManagerBase.
+ */
+
 namespace Drupal\blazy;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -156,8 +161,7 @@ abstract class BlazyManagerBase implements BlazyManagerInterface {
     }
 
     // Core Blazy libraries.
-    // @todo remove last condition when Mason and Gridstack updated to blazy.
-    if (!empty($attach['blazy']) || (!empty($attach['lazy']) && $attach['lazy'] == 'blazy')) {
+    if (!empty($attach['lazy']) && ($attach['lazy'] == 'blazy' || $attach['lazy'] == 'responsive')) {
       $load['library'][] = 'blazy/load';
       $load['drupalSettings']['blazy'] = $this->configLoad()['blazy'];
     }
@@ -197,7 +201,7 @@ abstract class BlazyManagerBase implements BlazyManagerInterface {
             }
             else {
               foreach ($methods as $method) {
-                $items[$method] = method_exists($skin, $method) ? $skin->{$method}() : [];
+                $items[$method] = method_exists($skin, $method) ? $skin->$method() : [];
               }
             }
           }

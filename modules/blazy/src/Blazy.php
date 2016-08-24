@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Contains \Drupal\blazy\Blazy.
+ */
+
 namespace Drupal\blazy;
 
 use Drupal\Core\Template\Attribute;
@@ -22,7 +27,7 @@ class Blazy extends BlazyManager {
    */
   public static function buildAttributes(&$variables) {
     $element = $variables['element'];
-    foreach (['attributes', 'captions', 'embed_url', 'item', 'item_attributes', 'settings', 'url', 'url_attributes'] as $key) {
+    foreach (['captions', 'embed_url', 'item', 'item_attributes', 'settings', 'url', 'url_attributes'] as $key) {
       $variables[$key] = isset($element["#$key"]) ? $element["#$key"] : [];
     }
 
@@ -31,6 +36,7 @@ class Blazy extends BlazyManager {
     $settings           = &$variables['settings'];
     $attributes         = &$variables['attributes'];
     $image_attributes   = &$variables['item_attributes'];
+    $content_attributes = [];
 
     // Modifies variables.
     foreach (['icon', 'lightbox', 'media_switch', 'player', 'scheme', 'type'] as $key) {
@@ -45,21 +51,19 @@ class Blazy extends BlazyManager {
     }
 
     // Supports non-blazy formatter, that is, responsive image theme.
-    $image  = &$variables['image'];
-    $iframe = [];
+    $image = &$variables['image'];
 
     // Media URL is stored in the settings.
+    // @todo re-check for a mix for image + video.
     $media = !empty($variables['embed_url']) && !empty($settings['type']) && in_array($settings['type'], ['video', 'audio']);
 
-    // The regular non-responsive, non-lazyloaded image URI where image_url may
-    // contain image_style which is not expected by responsive_image.
+    // The regular non-responsive, non-lazyloaded image.
     $image['#uri'] = empty($settings['image_url']) ? $settings['uri'] : $settings['image_url'];
 
     // Check whether we have responsive image, or lazyloaded one.
-    if (!empty($settings['responsive_image_style_id']) && !empty($settings['uri'])) {
+    if (!empty($settings['responsive_image_style_id'])) {
       $image['#type'] = 'responsive_image';
       $image['#responsive_image_style_id'] = $settings['responsive_image_style_id'];
-      $image['#uri'] = $settings['uri'];
 
       // Disable aspect ratio which is not yet supported due to complexity.
       $settings['ratio'] = FALSE;
@@ -72,19 +76,13 @@ class Blazy extends BlazyManager {
         $image['#uri'] = static::PLACEHOLDER;
 
         // Attach data-attributes to the either DIV or IMG container.
-        if (empty($settings['background']) || empty($settings['blazy'])) {
+        if (empty($settings['background'])) {
           self::buildBreakpointAttributes($image_attributes, $settings);
         }
-
-        // Supports both Slick and Blazy CSS background lazyloading.
-        if (!empty($settings['background'])) {
+        else {
           self::buildBreakpointAttributes($attributes, $settings);
           $attributes['class'][] = 'media--background';
-
-          // Blazy doesn't need IMG to lazyload CSS background. Slick does.
-          if (!empty($settings['blazy'])) {
-            $image = [];
-          }
+         $image = [];
         }
       }
 
@@ -97,11 +95,11 @@ class Blazy extends BlazyManager {
 
     // Image is optional for Video, and CSS background images.
     if ($image) {
-      $image_attributes['alt'] = isset($item->alt) ? $item->alt : NULL;
+      $image['#alt'] = isset($item->alt) ? $item->alt : NULL;
 
       // Do not output an empty 'title' attribute.
       if (isset($item->title) && (Unicode::strlen($item->title) != 0)) {
-        $image_attributes['title'] = $item->title;
+        $image['#title'] = $item->title;
       }
 
       $image_attributes['class'][] = 'media__image media__element';
@@ -113,13 +111,17 @@ class Blazy extends BlazyManager {
       // image : If iframe switch disabled, fallback to iframe, remove image.
       // player: If no colorbox/photobox, it is an image to iframe switcher.
       // data- : Gets consistent with colorbox to share JS manipulation.
-      $lazy                    = empty($settings['lazy_attribute']) ? 'src' : $settings['lazy_attribute'];
-      $image                   = empty($settings['media_switch']) ? [] : $image;
-      $settings['player']      = empty($settings['lightbox']) && $settings['media_switch'] != 'content';
-      $iframe['data-media']    = Json::encode(['type' => $settings['type'], 'scheme' => $settings['scheme']]);
-      $iframe['data-' . $lazy] = $variables['embed_url'];
-      $iframe['class'][]       = empty($settings['lazy_class']) ? 'b-lazy' : $settings['lazy_class'];
-      $iframe['src']           = empty($settings['iframe_lazy']) ? $variables['embed_url'] : 'about:blank';
+      // @todo re-check blazy 'data-src' IFRAME lazyload against blazy.media.js.
+      $image                            = empty($settings['media_switch']) ? [] : $image;
+      $settings['player']               = empty($settings['lightbox']) && $settings['media_switch'] != 'content';
+      $content_attributes['data-media'] = Json::encode(['type' => $settings['type'], 'scheme' => $settings['scheme']]);
+      $content_attributes['data-lazy']  = $variables['embed_url'];
+      $content_attributes['src']        = empty($settings['iframe_lazy']) ? $variables['embed_url'] : 'about:blank';
+    }
+
+    // With CSS background, IMG may be emptied, so add to the container.
+    if (!empty($settings['thumbnail_url'])) {
+      $attributes['data-thumb'] = $settings['thumbnail_url'];
     }
 
     if (!empty($settings['caption'])) {
@@ -128,7 +130,7 @@ class Blazy extends BlazyManager {
     }
 
     // URL can be entity or lightbox URL different from the content image URL.
-    $variables['content_attributes'] = new Attribute($iframe);
+    $variables['content_attributes'] = new Attribute($content_attributes);
     $variables['url_attributes']     = new Attribute($variables['url_attributes']);
   }
 

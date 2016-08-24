@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Contains \Drupal\blazy\Dejavu\BlazyEntityReferenceBase.
+ */
+
 namespace Drupal\blazy\Dejavu;
 
 use Drupal\Component\Utility\Xss;
@@ -85,7 +90,7 @@ abstract class BlazyEntityReferenceBase extends EntityReferenceFormatterBase {
 
     $field_image = empty($settings['image']) ? $field_image : $settings['image'];
 
-    if ($field_image && isset($entity->{$field_image})) {
+    if ($field_image && isset($entity->$field_image)) {
       /** @var \Drupal\file\Plugin\Field\FieldType\FileFieldItemList $file */
       $file = $entity->get($field_image);
 
@@ -144,7 +149,7 @@ abstract class BlazyEntityReferenceBase extends EntityReferenceFormatterBase {
 
     // Title can be plain text, or link field.
     $field_title = $settings['title'];
-    $has_title = $field_title && isset($entity->{$field_title});
+    $has_title = $field_title && isset($entity->$field_title);
     if ($has_title && $title = $entity->getTranslation($langcode)->get($field_title)->getValue()) {
       if (!empty($title[0]['value']) && !isset($title[0]['uri'])) {
         // Prevents HTML-filter-enabled text from having bad markups (h2 > p).
@@ -159,7 +164,7 @@ abstract class BlazyEntityReferenceBase extends EntityReferenceFormatterBase {
     if (!empty($settings['caption'])) {
       $caption_items = [];
       foreach ($settings['caption'] as $i => $field_caption) {
-        if (!isset($entity->{$field_caption})) {
+        if (!isset($entity->$field_caption)) {
           continue;
         }
         $caption_items[$i] = $this->getFieldRenderable($entity, $field_caption, $view_mode);
@@ -171,12 +176,12 @@ abstract class BlazyEntityReferenceBase extends EntityReferenceFormatterBase {
 
     // Link, if so configured.
     $field_link = $settings['link'];
-    if ($field_link && isset($entity->{$field_link})) {
+    if ($field_link && isset($entity->$field_link)) {
       $links = $this->getFieldRenderable($entity, $field_link, $view_mode);
       // Only simplify markups for known formatters registered by link.module.
       if ($links && in_array($links['#formatter'], ['link'])) {
         $links = [];
-        foreach ($entity->{$field_link} as $i => $link) {
+        foreach ($entity->$field_link as $i => $link) {
           $links[$i] = $link->view($view_mode);
         }
       }
@@ -212,7 +217,7 @@ abstract class BlazyEntityReferenceBase extends EntityReferenceFormatterBase {
    */
   public function getFieldString($entity, $field_name = '', $langcode, $formatted = FALSE) {
     $value = '';
-    if ($field_name && isset($entity->{$field_name})) {
+    if ($field_name && isset($entity->$field_name)) {
       $values = $entity->getTranslation($langcode)->get($field_name)->getValue();
       if (!empty($values[0]['value'])) {
         $value = $values[0]['value'];
@@ -228,10 +233,10 @@ abstract class BlazyEntityReferenceBase extends EntityReferenceFormatterBase {
    * Returns the formatted renderable array of the field.
    */
   public function getFieldRenderable($entity, $field_name = '', $view_mode = 'full') {
-    $has_field = $field_name && isset($entity->{$field_name});
+    $has_field = $field_name && isset($entity->$field_name);
     $view = [];
-    if ($has_field && !empty($entity->{$field_name}->view($view_mode)[0])) {
-      $view = $entity->{$field_name}->view($view_mode);
+    if ($has_field && !empty($entity->$field_name->view($view_mode)[0])) {
+      $view = $entity->$field_name->view($view_mode);
 
       // Prevents quickedit to operate here as otherwise JS error.
       // @see 2314185, 2284917, 2160321.
@@ -268,22 +273,19 @@ abstract class BlazyEntityReferenceBase extends EntityReferenceFormatterBase {
    * Defines the scope for the form elements.
    */
   public function getScopedFormElements() {
-    $admin       = $this->admin();
-    $field       = $this->fieldDefinition;
-    $entity_type = $field->getTargetEntityTypeId();
-    $views_ui    = $this->getFieldSetting('handler') == 'default';
-    $bundles     = $views_ui ? [] : $this->getFieldSetting('handler_settings')['target_bundles'];
-    $strings     = $admin->getFieldOptions($bundles, ['text', 'string', 'list_string']);
-    $texts       = $admin->getFieldOptions($bundles, ['text', 'text_long', 'string', 'string_long', 'link']);
+    $admin    = $this->admin();
+    $views_ui = $this->getFieldSetting('handler') == 'default';
+    $bundles  = $views_ui ? [] : $this->getFieldSetting('handler_settings')['target_bundles'];
+    $strings  = $admin->getFieldOptions($bundles, ['text', 'string', 'list_string']);
+    $texts    = $admin->getFieldOptions($bundles, ['text', 'text_long', 'string', 'string_long', 'link']);
 
     return [
       'breakpoints'       => BlazyDefault::getConstantBreakpoints(),
       'captions'          => $admin->getFieldOptions($bundles),
       'classes'           => $strings,
       'current_view_mode' => $this->viewMode,
-      'entity_type'       => $entity_type,
       'fieldable_form'    => TRUE,
-      'field_name'        => $field->getName(),
+      'field_name'        => $this->fieldDefinition->getName(),
       'images'            => $admin->getFieldOptions($bundles, ['image']),
       'image_style_form'  => TRUE,
       'layouts'           => $strings,
