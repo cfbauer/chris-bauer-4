@@ -1,0 +1,21 @@
+langcode: en
+id: contact_message_feedback_form
+uuid: 9e715c06-d62f-42cf-b4a2-fe7b596f2d12
+label: 'Site-wide contact form'
+mode: '2'
+enabled_fields:
+  - subject
+  - message
+checks:
+  - spam
+strictness: normal
+unsure: captcha
+discard: '1'
+moderation: null
+mapping:
+  post_title: subject
+  author_name: name
+  author_mail: mail
+module: contact
+entity: null
+bundle: null

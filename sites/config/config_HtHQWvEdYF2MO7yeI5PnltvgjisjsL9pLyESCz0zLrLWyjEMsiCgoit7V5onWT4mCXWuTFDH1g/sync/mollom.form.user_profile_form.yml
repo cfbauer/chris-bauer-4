@@ -1,0 +1,23 @@
+langcode: en
+id: user_profile_form
+uuid: 296aee5a-dac1-4acb-9975-50997f8da644
+label: 'User profile form'
+mode: '1'
+enabled_fields:
+  - name
+  - mail
+  - timezone
+  - init
+checks:
+  - spam
+strictness: normal
+unsure: captcha
+discard: '1'
+moderation: null
+mapping:
+  author_name: name
+  author_mail: mail
+  post_id: uid
+module: user
+entity: user
+bundle: user

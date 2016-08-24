@@ -1,0 +1,19 @@
+langcode: en
+id: user_pass
+uuid: e0f5ddca-625b-4b06-95e1-3e4dde0e4b40
+label: 'User password request form'
+mode: '1'
+enabled_fields: {  }
+checks:
+  - spam
+strictness: normal
+unsure: captcha
+discard: '1'
+moderation: null
+mapping:
+  post_id: uid
+  author_name: name
+  author_mail: name
+module: user
+entity: null
+bundle: null

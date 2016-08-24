@@ -1,0 +1,14 @@
+keys:
+  public: f0a592aa4f57d72d1ed789abce9d649b
+  private: 239f9020271702b9f750d4474bff9207
+fallback: 1
+languages_expected:
+  languageCode: en
+privacy_link: false
+test_mode:
+  enabled: false
+log_level: null
+captcha:
+  audio:
+    enabled: false
+connection_timeout_seconds: 3

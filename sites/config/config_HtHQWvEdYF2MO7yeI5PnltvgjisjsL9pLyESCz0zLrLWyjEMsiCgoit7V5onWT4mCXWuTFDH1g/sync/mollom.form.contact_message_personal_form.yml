@@ -1,0 +1,21 @@
+langcode: en
+id: contact_message_personal_form
+uuid: 7b71185c-b18c-4df3-b6f0-fa9661c94544
+label: 'User contact form'
+mode: '2'
+enabled_fields:
+  - subject
+  - message
+checks:
+  - spam
+strictness: normal
+unsure: captcha
+discard: '1'
+moderation: null
+mapping:
+  post_title: subject
+  author_name: name
+  author_mail: mail
+module: contact
+entity: null
+bundle: null
