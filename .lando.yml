@@ -1,0 +1,5 @@
+name: chris-bauer-4
+recipe: drupal8
+config:
+  webroot: .
+  drush: global:8.1.15
