@@ -6,8 +6,8 @@ package: Field Formatters
 dependencies:
  - field
 
-# Information added by Drupal.org packaging script on 2016-04-15
-version: '8.x-1.0-rc2+5-dev'
+# Information added by Drupal.org packaging script on 2017-03-02
+version: '8.x-1.0'
 core: '8.x'
 project: 'field_formatter_class'
-datestamp: 1460743440
+datestamp: 1488471785

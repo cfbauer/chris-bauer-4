@@ -3,13 +3,14 @@
 namespace Drupal\config_update_ui\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Diff\DiffFormatter;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Extension\ThemeHandlerInterface;
 use Drupal\Core\Site\Settings;
 use Drupal\Core\Url;
 use Drupal\config_update\ConfigDiffInterface;
-use Drupal\config_update\ConfigListInterface;
+use Drupal\config_update\ConfigListByProviderInterface;
 use Drupal\config_update\ConfigRevertInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -28,7 +29,7 @@ class ConfigUpdateController extends ControllerBase {
   /**
    * The config lister.
    *
-   * @var \Drupal\config_update\ConfigListInterface
+   * @var \Drupal\config_update\ConfigListByProviderInterface
    */
   protected $configList;
 
@@ -61,11 +62,18 @@ class ConfigUpdateController extends ControllerBase {
   protected $themeHandler;
 
   /**
+   * The config factory.
+   *
+   * @var \Drupal\Core\config\ConfigFactoryInterface
+   */
+  protected $configFactory;
+
+  /**
    * Constructs a ConfigUpdateController object.
    *
    * @param \Drupal\config_update\ConfigDiffInterface $config_diff
    *   The config differ.
-   * @param \Drupal\config_update\ConfigListInterface $config_list
+   * @param \Drupal\config_update\ConfigListByProviderInterface $config_list
    *   The config lister.
    * @param \Drupal\config_update\ConfigRevertInterface $config_update
    *   The config reverter.
@@ -75,8 +83,10 @@ class ConfigUpdateController extends ControllerBase {
    *   The module handler.
    * @param \Drupal\Core\Extension\ThemeHandlerInterface $theme_handler
    *   The theme handler.
+   * @param \drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The config factory.
    */
-  public function __construct(ConfigDiffInterface $config_diff, ConfigListInterface $config_list, ConfigRevertInterface $config_update, DiffFormatter $diff_formatter, ModuleHandlerInterface $module_handler, ThemeHandlerInterface $theme_handler) {
+  public function __construct(ConfigDiffInterface $config_diff, ConfigListByProviderInterface $config_list, ConfigRevertInterface $config_update, DiffFormatter $diff_formatter, ModuleHandlerInterface $module_handler, ThemeHandlerInterface $theme_handler, ConfigFactoryInterface $config_factory) {
     $this->configDiff = $config_diff;
     $this->configList = $config_list;
     $this->configRevert = $config_update;
@@ -84,6 +94,7 @@ class ConfigUpdateController extends ControllerBase {
     $this->diffFormatter->show_header = FALSE;
     $this->moduleHandler = $module_handler;
     $this->themeHandler = $theme_handler;
+    $this->configFactory = $config_factory;
   }
 
   /**
@@ -96,28 +107,9 @@ class ConfigUpdateController extends ControllerBase {
       $container->get('config_update.config_update'),
       $container->get('diff.formatter'),
       $container->get('module_handler'),
-      $container->get('theme_handler')
+      $container->get('theme_handler'),
+      $container->get('config.factory')
     );
-  }
-
-  /**
-   * Imports configuration from a module, theme, or profile.
-   *
-   * Configuration is assumed not to currently exist.
-   *
-   * @param string $config_type
-   *   The type of configuration.
-   * @param string $config_name
-   *   The name of the config item, without the prefix.
-   *
-   * @return \Symfony\Component\HttpFoundation\RedirectResponse
-   *   Redirects to the updates report.
-   */
-  public function import($config_type, $config_name) {
-    $this->configRevert->import($config_type, $config_name);
-
-    drupal_set_message($this->t('The configuration was imported.'));
-    return $this->redirect('config_update_ui.report');
   }
 
   /**
@@ -238,10 +230,26 @@ class ConfigUpdateController extends ControllerBase {
       '#rows' => [],
     ];
 
+    // Full report of all configuration.
+    $links['report_full'] = [
+      'title' => $this->t('Everything'),
+      'url' => Url::fromRoute('config_update_ui.report', ['report_type' => 'type', 'name' => 'system.all']),
+    ];
+    $build['links']['#rows'][] = [
+      $this->t('Full report'),
+      [
+        'data' => [
+          '#type' => 'operations',
+          '#links' => $links,
+        ],
+      ],
+    ];
+
+    // Reports by configuration type.
     $definitions = $this->configList->listTypes();
     $links = [];
     foreach ($definitions as $entity_type => $definition) {
-      $links['type_' . $entity_type] = [
+      $links['report_type_' . $entity_type] = [
         'title' => $definition->getLabel(),
         'url' => Url::fromRoute('config_update_ui.report', ['report_type' => 'type', 'name' => $entity_type]),
       ];
@@ -250,18 +258,14 @@ class ConfigUpdateController extends ControllerBase {
     uasort($links, [$this, 'sortLinks']);
 
     $links = [
-      'type_all' => [
-        'title' => $this->t('All types'),
-        'url' => Url::fromRoute('config_update_ui.report', ['report_type' => 'type', 'name' => 'system.all']),
-      ],
-      'type_system.simple' => [
+      'report_type_system.simple' => [
         'title' => $this->t('Simple configuration'),
         'url' => Url::fromRoute('config_update_ui.report', ['report_type' => 'type', 'name' => 'system.simple']),
       ],
     ] + $links;
 
     $build['links']['#rows'][] = [
-      $this->t('Configuration type'),
+      $this->t('Single configuration type'),
       [
         'data' => [
           '#type' => 'operations',
@@ -271,12 +275,12 @@ class ConfigUpdateController extends ControllerBase {
     ];
 
     // Make a list of installed modules.
-    $profile = Settings::get('install_profile');
+    $profile = $this->getProfileName();
     $modules = $this->moduleHandler->getModuleList();
     $links = [];
     foreach ($modules as $machine_name => $module) {
-      if ($machine_name != $profile) {
-        $links['module_' . $machine_name] = [
+      if ($machine_name != $profile && $this->configList->providerHasConfig('module', $machine_name)) {
+        $links['report_module_' . $machine_name] = [
           'title' => $this->moduleHandler->getName($machine_name),
           'url' => Url::fromRoute('config_update_ui.report', ['report_type' => 'module', 'name' => $machine_name]),
         ];
@@ -285,7 +289,7 @@ class ConfigUpdateController extends ControllerBase {
     uasort($links, [$this, 'sortLinks']);
 
     $build['links']['#rows'][] = [
-      $this->t('Module'),
+      $this->t('Single module'),
       [
         'data' => [
           '#type' => 'operations',
@@ -298,15 +302,17 @@ class ConfigUpdateController extends ControllerBase {
     $themes = $this->themeHandler->listInfo();
     $links = [];
     foreach ($themes as $machine_name => $theme) {
-      $links['theme_' . $machine_name] = [
-        'title' => $this->themeHandler->getName($machine_name),
-        'url' => Url::fromRoute('config_update_ui.report', ['report_type' => 'theme', 'name' => $machine_name]),
-      ];
+      if ($this->configList->providerHasConfig('theme', $machine_name)) {
+        $links['report_theme_' . $machine_name] = [
+          'title' => $this->themeHandler->getName($machine_name),
+          'url' => Url::fromRoute('config_update_ui.report', ['report_type' => 'theme', 'name' => $machine_name]),
+        ];
+      }
     }
     uasort($links, [$this, 'sortLinks']);
 
     $build['links']['#rows'][] = [
-      $this->t('Theme'),
+      $this->t('Single theme'),
       [
         'data' => [
           '#type' => 'operations',
@@ -315,21 +321,24 @@ class ConfigUpdateController extends ControllerBase {
       ],
     ];
 
-    // Profile is just one option.
     $links = [];
-    $links['profile_' . $profile] = [
-      'title' => $this->moduleHandler->getName($profile),
-      'url' => Url::fromRoute('config_update_ui.report', ['report_type' => 'profile']),
-    ];
-    $build['links']['#rows'][] = [
-      $this->t('Installation profile'),
-      [
-        'data' => [
-          '#type' => 'operations',
-          '#links' => $links,
+
+    // Profile is just one option.
+    if ($this->configList->providerHasConfig('profile', $profile)) {
+      $links['report_profile_' . $profile] = [
+        'title' => $this->moduleHandler->getName($profile),
+        'url' => Url::fromRoute('config_update_ui.report', ['report_type' => 'profile']),
+      ];
+      $build['links']['#rows'][] = [
+        $this->t('Installation profile'),
+        [
+          'data' => [
+            '#type' => 'operations',
+            '#links' => $links,
+          ],
         ],
-      ],
-    ];
+      ];
+    }
 
     return $build;
   }
@@ -388,7 +397,7 @@ class ConfigUpdateController extends ControllerBase {
         break;
 
       case 'profile':
-        $profile = Settings::get('install_profile');
+        $profile = $this->getProfileName();
         $label = $this->t('@name profile', ['@name' => $this->moduleHandler->getName($profile)]);
         break;
 
@@ -444,7 +453,8 @@ class ConfigUpdateController extends ControllerBase {
     $build['different'] = [
       '#caption' => $this->t('Changed configuration items'),
       '#empty' => $this->t('None: no active configuration items differ from their current provided versions.'),
-    ] + $this->makeReportTable($different, 'active', ['diff', 'export', 'revert']);
+    ] + $this->makeReportTable($different, 'active',
+      ['diff', 'export', 'revert']);
 
     return $build;
   }
@@ -463,13 +473,13 @@ class ConfigUpdateController extends ControllerBase {
    *   - revert
    *   - export
    *   - import
-   *   - delete
+   *   - delete.
    *
    * @return array
    *   Render array for the table, not including the #empty and #prefix
    *   properties.
    */
-  protected function makeReportTable($names, $storage, $actions) {
+  protected function makeReportTable(array $names, $storage, array $actions) {
     $build = [];
 
     $build['#type'] = 'table';
@@ -487,6 +497,10 @@ class ConfigUpdateController extends ControllerBase {
       'type' => [
         'data' => $this->t('Type'),
         'class' => [RESPONSIVE_PRIORITY_MEDIUM],
+      ],
+      'provider' => [
+        'data' => $this->t('Provider'),
+        'class' => [RESPONSIVE_PRIORITY_LOW],
       ],
       'operations' => [
         'data' => $this->t('Operations'),
@@ -510,6 +524,7 @@ class ConfigUpdateController extends ControllerBase {
       if (!$entity_type) {
         // This is simple config.
         $id = $name;
+        $label = '';
         $type_label = $this->t('Simple configuration');
         $entity_type = 'system.simple';
       }
@@ -517,13 +532,56 @@ class ConfigUpdateController extends ControllerBase {
         $definition = $this->configList->getType($entity_type);
         $id_key = $definition->getKey('id');
         $id = $config[$id_key];
+        // The label key is not required.
+        if ($label_key = $definition->getKey('label')) {
+          $label = $config[$label_key];
+        }
+        else {
+          $label = '';
+        }
+
         $type_label = $definition->getLabel();
       }
 
-      $label = (isset($config['label'])) ? $config['label'] : '';
       $row[] = $name;
       $row[] = $label;
       $row[] = $type_label;
+      $provider = $this->configList->getConfigProvider($name);
+      $provider_name = '';
+      if (!empty($provider)) {
+        switch ($provider[0]) {
+          case 'profile':
+            $provider_name = $this->moduleHandler->getName($provider[1]);
+            if ($provider_name) {
+              $provider_name = $this->t('@name profile', ['@name' => $provider_name]);
+            }
+            else {
+              $provider_name = '';
+            }
+            break;
+
+          case 'module':
+            $provider_name = $this->moduleHandler->getName($provider[1]);
+            if ($provider_name) {
+              $provider_name = $this->t('@name module', ['@name' => $provider_name]);
+            }
+            else {
+              $provider_name = '';
+            }
+            break;
+
+          case 'theme':
+            $provider_name = $this->themeHandler->getName($provider[1]);
+            if ($provider_name) {
+              $provider_name = $this->t('@name theme', ['@name' => $provider_name]);
+            }
+            else {
+              $provider_name = '';
+            }
+            break;
+        }
+      }
+      $row[] = $provider_name;
 
       $links = [];
       $routes = [
@@ -571,6 +629,28 @@ class ConfigUpdateController extends ControllerBase {
       return 0;
     }
     return ($title1 < $title2) ? -1 : 1;
+  }
+
+  /**
+   * Returns the name of the install profile.
+   *
+   * For backwards compatibility with pre/post 8.3.x, tries to get it from
+   * either configuration or settings.
+   *
+   * @return string
+   *   The name of the install profile.
+   */
+  protected function getProfileName() {
+    // Code adapted from DrupalKernel::getInstalProfile() in Core.
+    // In Core 8.3.x or later, read from config.
+    $profile = $this->configFactory->get('core.extension')->get('profile');
+    if (!empty($profile)) {
+      return $profile;
+    }
+    else {
+      // If system_update_8300() has not yet run, use settings.
+      return Settings::get('install_profile');
+    }
   }
 
 }
